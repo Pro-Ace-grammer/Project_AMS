@@ -25,7 +25,6 @@ def submit_form():
     print(reg_no, name, gender, category, math_marks, science_marks, english_marks, total_marks)
 
 # create the form inputs
-
 select_year_label = Label(root, text="Select Year")
 select_year_label.pack()
 

@@ -4,6 +4,7 @@ root = Tk()
 root.geometry("600x600")
 root.title("Students Details")
 
+
 select_year_label = Label(root, text="Select Year")
 select_year_label.pack()
 
@@ -39,5 +40,6 @@ prog = Label(root, text="Program").place(x=10,y=140)
 mo_radiobtn = Checkbutton(root, text="MO", variable=mo_var).place(x=80,y=140)
 py_radiobtn = Checkbutton(root, text="PY", variable=py_var).place(x=160,y=140)
 engg_radiobtn = Checkbutton(root, text="ENGG", variable=engg_var).place(x=240,y=140)
+
 
 root.mainloop()
