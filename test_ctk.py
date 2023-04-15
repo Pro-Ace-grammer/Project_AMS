@@ -2,8 +2,7 @@ import customtkinter as ctk
 root = ctk.CTk()
 root.geometry("600x600")
 root.title("Students Details")
-
-
+root.config(background="grey")
 
 
 

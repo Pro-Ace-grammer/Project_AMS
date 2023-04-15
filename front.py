@@ -26,8 +26,8 @@ def submit_form():
 
 # create the form inputs
 
-select_year_label = Label(root, text="Select Year")
-select_year_label.pack()
+# select_year_label = Label(root, text="Select Year")
+# select_year_label.pack()
 
 year_var = IntVar()
 year1_radiobtn = Radiobutton(root, text="1st Year", variable=year_var, value=1)
