@@ -82,17 +82,61 @@ female_radiobtn.grid(padx=500,pady=10)
 other_radiobtn =CTkRadioButton(f_year_frame, text="Other", variable=gender_var, value="O")
 other_radiobtn.grid(padx=500,pady=10)
 
+
+
+#--------MO_PY_ENGG--------
+
+
+#--------Function to validate HSSC fields based on MO PY and ENGG--------
+def disab_enab():
+
+    if(((engg_var.get()==True) and (py_var.get()==False and mo_var.get()==False)) or( engg_var.get()==False and py_var.get()==False and mo_var.get()==False)):
+        hssc_eng_entry.configure(state="disabled")
+        hssc_eng_label.configure(state="disabled")
+        hssc_phy_entry.configure(state="disabled")
+        hssc_phy_label.configure(state="disabled")
+        hssc_che_entry.configure(state="disabled")
+        hssc_che_label.configure(state="disabled")
+        hssc_bio_entry.configure(state="disabled")
+        hssc_bio_label.configure(state="disabled")
+        hssc_a_radiobtn.configure(state="disabled")
+        hssc_c_radiobtn.configure(state="disabled")
+        hssc_s_radiobtn.configure(state="disabled")
+        hssc_v_radiobtn.configure(state="disabled")
+    else:
+        hssc_eng_entry.configure(state="normal")
+        hssc_eng_label.configure(state="normal")
+        hssc_phy_entry.configure(state="normal")
+        hssc_phy_label.configure(state="normal")
+        hssc_che_entry.configure(state="normal")
+        hssc_che_label.configure(state="normal")
+        hssc_bio_entry.configure(state="normal")
+        hssc_bio_label.configure(state="normal")
+        hssc_a_radiobtn.configure(state="normal")
+        hssc_c_radiobtn.configure(state="normal")
+        hssc_s_radiobtn.configure(state="normal")
+        hssc_v_radiobtn.configure(state="normal")
+
+
+
+
+
+
+
+
 mo_var = BooleanVar()
 py_var = BooleanVar()
 engg_var = BooleanVar()
 program = CTkLabel(f_year_frame, text="Program:")
 program.grid(padx=500,pady=10)
-mo_btn = CTkCheckBox(f_year_frame, text="MO", variable=mo_var)
+mo_btn = CTkCheckBox(f_year_frame, text="MO", variable=mo_var ,command=disab_enab)
 mo_btn.grid(padx=500,pady=10)
-py_btn = CTkCheckBox(f_year_frame, text="PY", variable=py_var)
+py_btn = CTkCheckBox(f_year_frame, text="PY", variable=py_var ,command=disab_enab)
 py_btn.grid(padx=500,pady=10)
-engg_btn = CTkCheckBox(f_year_frame, text="ENGG", variable=engg_var)
+engg_btn = CTkCheckBox(f_year_frame, text="ENGG", variable=engg_var ,command=disab_enab)
 engg_btn.grid(padx=500,pady=10)
+
+
 
 
 #--------GEN/CSP--------
@@ -171,6 +215,11 @@ oga_radiobtn.grid(padx=500,pady=10)
 
 
 
+
+
+ssc_label=CTkLabel(f_year_frame, text="SSC  marks:" ,font=('Helvetica', 24))
+ssc_label.grid(padx=500,pady=5)
+
 ssc_eng_label=CTkLabel(f_year_frame, text="SSC English marks:")
 ssc_eng_label.grid(padx=500,pady=5)
 ssc_eng_entry = CTkEntry(f_year_frame)
@@ -195,10 +244,179 @@ ssc_sci_entry.grid(padx=500,pady=5)
 
 
 
-ssc_total_label=CTkLabel(f_year_frame, text="SSC Total marks:")
+ssc_total_label=CTkLabel(f_year_frame, text="SSC Total marks:" )
 ssc_total_label.grid(padx=500,pady=5)
 ssc_total_entry = CTkEntry(f_year_frame)
 ssc_total_entry.grid(padx=500,pady=5)
+
+
+
+
+
+
+
+
+#--------HSSC Marks--------
+
+hssc_label=CTkLabel(f_year_frame, text="HSSC  marks:" ,font=('Helvetica', 24))
+hssc_label.grid(padx=500,pady=5)
+
+hssc_eng_label=CTkLabel(f_year_frame, text="HSSC English marks:",state="disabled")
+hssc_eng_label.grid(padx=500,pady=5)
+hssc_eng_entry = CTkEntry(f_year_frame,state="disabled")
+hssc_eng_entry.grid(padx=500,pady=5)
+
+
+
+
+hssc_phy_label=CTkLabel(f_year_frame, text="HSSC Physics marks:",state="disabled")
+hssc_phy_label.grid(padx=500,pady=5)
+hssc_phy_entry = CTkEntry(f_year_frame,state="disabled")
+hssc_phy_entry.grid(padx=500,pady=5)
+
+
+
+
+hssc_che_label=CTkLabel(f_year_frame, text="HSSC Chemistry marks:",state="disabled")
+hssc_che_label.grid(padx=500,pady=5)
+hssc_che_entry = CTkEntry(f_year_frame,state="disabled")
+hssc_che_entry.grid(padx=500,pady=5)
+
+
+
+
+hssc_bio_label=CTkLabel(f_year_frame, text="HSSC Biology marks:" ,state="disabled")
+hssc_bio_label.grid(padx=500,pady=5)
+hssc_bio_entry = CTkEntry(f_year_frame,state="disabled")
+hssc_bio_entry.grid(padx=500,pady=5)
+
+
+
+
+
+#--------HSSC RadioButtons--------
+
+#--------Function to validate HSSC total marks  based on radio buttons--------
+def hssc_total():
+    print(hssc_total_var.get())
+
+    if(hssc_total_var.get()=="HSSC A"):
+
+        hssc_a_total_entry.configure(state="normal")
+        hssc_a_total_label.configure(state="normal")
+        hssc_c_total_entry.configure(state="disabled")
+        hssc_c_total_label.configure(state="disabled")
+        hssc_s_total_entry.configure(state="disabled")
+        hssc_s_total_label.configure(state="disabled")
+        hssc_v_total_entry.configure(state="disabled")
+        hssc_v_total_label.configure(state="disabled")
+
+    elif(hssc_total_var.get()=="HSSC C"):
+
+        hssc_a_total_entry.configure(state="disabled")
+        hssc_a_total_label.configure(state="disabled")
+        hssc_c_total_entry.configure(state="normal")
+        hssc_c_total_label.configure(state="normal")
+        hssc_s_total_entry.configure(state="disabled")
+        hssc_s_total_label.configure(state="disabled")
+        hssc_v_total_entry.configure(state="disabled")
+        hssc_v_total_label.configure(state="disabled")
+
+    elif(hssc_total_var.get()=="HSSC S"):
+
+        hssc_a_total_entry.configure(state="disabled")
+        hssc_a_total_label.configure(state="disabled")
+        hssc_c_total_entry.configure(state="disabled")
+        hssc_c_total_label.configure(state="disabled")
+        hssc_s_total_entry.configure(state="normal")
+        hssc_s_total_label.configure(state="normal")
+        hssc_v_total_entry.configure(state="disabled")
+        hssc_v_total_label.configure(state="disabled")
+
+    else:
+
+        hssc_a_total_entry.configure(state="disabled")
+        hssc_a_total_label.configure(state="disabled")
+        hssc_c_total_entry.configure(state="disabled")
+        hssc_c_total_label.configure(state="disabled")
+        hssc_s_total_entry.configure(state="disabled")
+        hssc_s_total_label.configure(state="disabled")
+        hssc_v_total_entry.configure(state="normal")
+        hssc_v_total_label.configure(state="normal")
+
+
+
+
+
+
+
+hssc_total_var=StringVar()
+
+
+hssc_type_label=CTkLabel(f_year_frame, text="HSSC :")
+hssc_type_label.grid(padx=500,pady=10)
+
+hssc_a_radiobtn = CTkRadioButton(f_year_frame, text="HSSC A",variable=hssc_total_var,value="HSSC A",command=hssc_total,state="disabled")
+hssc_a_radiobtn.grid(padx=500,pady=10)
+
+hssc_c_radiobtn = CTkRadioButton(f_year_frame,text="HSSC C", variable=hssc_total_var,value="HSSC C",command=hssc_total,state="disabled")
+hssc_c_radiobtn.grid(padx=500,pady=10)
+
+hssc_s_radiobtn = CTkRadioButton(f_year_frame,text="HSSC S", variable=hssc_total_var,value="HSSC S",command=hssc_total,state="disabled")
+hssc_s_radiobtn.grid(padx=500,pady=10)
+
+
+hssc_v_radiobtn = CTkRadioButton(f_year_frame,text="HSSC V", variable=hssc_total_var,value="HSSC V",command=hssc_total,state="disabled")
+hssc_v_radiobtn.grid(padx=500,pady=10)
+
+#------HSSC Total Entry--------
+
+
+
+
+
+hssc_a_total_var=StringVar()
+hssc_c_total_var=StringVar()
+hssc_s_total_var=StringVar()
+hssc_v_total_var=StringVar()
+
+
+hssc_total_label=CTkLabel(f_year_frame, text="HSSC Total marks:" )
+hssc_total_label.grid(padx=500,pady=5)
+
+hssc_a_total_label=CTkLabel(f_year_frame, text="HSSC A total marks",state="disabled")
+hssc_a_total_label.grid(padx=500,pady=5)
+hssc_a_total_entry = CTkEntry(f_year_frame,textvariable=hssc_a_total_var,state="disabled")
+hssc_a_total_entry.grid(padx=500,pady=5)
+
+
+
+
+hssc_c_total_label=CTkLabel(f_year_frame, text="HSSC C total marks",state="disabled")
+hssc_c_total_label.grid(padx=500,pady=5)
+hssc_c_total_entry = CTkEntry(f_year_frame,textvariable=hssc_c_total_var,state="disabled")
+hssc_c_total_entry.grid(padx=500,pady=5)
+
+
+
+
+hssc_s_total_label=CTkLabel(f_year_frame, text="HSSC S total marks",state="disabled")
+hssc_s_total_label.grid(padx=500,pady=5)
+hssc_s_total_entry = CTkEntry(f_year_frame,textvariable=hssc_s_total_var,state="disabled")
+hssc_s_total_entry.grid(padx=500,pady=5)
+
+
+
+
+hssc_v_total_label=CTkLabel(f_year_frame, text="HSSC V total marks",state="disabled")
+hssc_v_total_label.grid(padx=500,pady=5)
+hssc_v_total_entry = CTkEntry(f_year_frame,textvariable=hssc_v_total_var,state="disabled")
+hssc_v_total_entry.grid(padx=500,pady=5)
+
+
+
+
+
 
 
 
