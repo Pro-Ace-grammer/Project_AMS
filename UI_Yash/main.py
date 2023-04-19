@@ -5,9 +5,12 @@ from customtkinter import *
 app=CTk()
 width= app.winfo_screenwidth()               
 height= app.winfo_screenheight() 
+set_appearance_mode("system")
 # app.resizable(width=FALSE, height=FALSE)
 app.geometry("%dx%d" %(width,height))
 app.title("App")
+print(width)
+print(height)
 
 #--------Functions--------
 def year1():
@@ -20,8 +23,7 @@ def year1():
 
 def year2():
     f_year_frame.grid_forget()
-    s_year_frame.grid_propagate(0)
-    # s_year_frame.grid(row=0,column=1)
+    s_year_frame.grid_propagate()
     s_year_frame.grid(row=0,column=1,sticky="N",padx=5,pady=5)   
 
 
@@ -29,8 +31,9 @@ def year2():
 
 
 
-
-frame1=CTkFrame(app,width=185,height=height)
+f_width=13.616398243*width/100
+year_frame_width=84.1874084919*width/100
+frame1=CTkFrame(app,width=f_width,height=height)
 frame1.grid(row=0,column=0,padx=5,pady=5,sticky="E")
 frame1.grid_propagate(0)
 
@@ -48,7 +51,7 @@ s_year_buton.grid(padx=10,pady=10)
 
 
 #--------First Year Frame--------
-f_year_frame=CTkScrollableFrame(app,width=1150,height=height-80,orientation="vertical")
+f_year_frame=CTkScrollableFrame(app,width=year_frame_width,height=height-80,orientation="vertical")
 f_year_frame.grid(row=0,column=1,sticky="N",padx=5,pady=5)
 f_year_frame.grid_propagate()
 # f_label=CTkLabel(f_year_frame,text='1st year')
@@ -56,9 +59,13 @@ f_year_frame.grid_propagate()
 
 
 #--------Frame content--------
+
+
+register_var=StringVar()
+
 reg_no_label = CTkLabel(f_year_frame, text="Registration Number")
 reg_no_label.grid(padx=500,pady=5)
-reg_no_entry = CTkEntry(f_year_frame)
+reg_no_entry = CTkEntry(f_year_frame,textvariable=register_var)
 reg_no_entry.grid(padx=500,pady=5)
 
 
@@ -67,7 +74,7 @@ name_var=StringVar()
 
 name_label = CTkLabel(f_year_frame, text="Name")
 name_label.grid(padx=500,pady=10)
-name_entry =CTkEntry(f_year_frame)
+name_entry =CTkEntry(f_year_frame,textvariable=name_var)
 name_entry.grid(padx=500,pady=10)
 
 
@@ -414,12 +421,13 @@ hssc_v_total_entry = CTkEntry(f_year_frame,textvariable=hssc_v_total_var,state="
 hssc_v_total_entry.grid(padx=500,pady=5)
 
 
+#--------Remarks Text Box--------
+fy_remarks_var=StringVar()
 
-
-
-
-
-
+hssc_a_total_label=CTkLabel(f_year_frame, text="Remarks")
+hssc_a_total_label.grid(padx=500,pady=5)
+hssc_a_total_entry = CTkEntry(f_year_frame,textvariable=fy_remarks_var,width=300,height=100)
+hssc_a_total_entry.grid(padx=500,pady=5)
 
 
 
@@ -428,6 +436,67 @@ hssc_v_total_entry.grid(padx=500,pady=5)
 
 #--------First Year Frame Ends------
 
+#-----------------------------------
+#-----------------------------------
+#-----------------------------------
+#-----------------------------------
+#-----------------------------------
+#-----------------------------------
+
+
+
+
+#--------Second Year Frame--------
+
+s_year_frame=CTkScrollableFrame(app,width=year_frame_width,height=height-80,orientation="vertical")
+s_year_frame.grid_propagate()
+
+
+
+
+
+
+
+s_register_var=StringVar()
+
+s_reg_no_label = CTkLabel(s_year_frame, text="Registration Number")
+s_reg_no_label.grid(padx=500,pady=5)
+s_reg_no_entry = CTkEntry(s_year_frame,textvariable=s_register_var)
+s_reg_no_entry.grid(padx=500,pady=5)
+
+
+
+s_name_var=StringVar()
+
+s_name_label = CTkLabel(s_year_frame, text="Name")
+s_name_label.grid(padx=500,pady=10)
+s_name_entry =CTkEntry(s_year_frame,textvariable=s_name_var)
+s_name_entry.grid(padx=500,pady=10)
+
+
+s_gender_var = StringVar()
+s_gender = CTkLabel(s_year_frame, text="Gender")
+s_gender.grid(padx=500,pady=10)
+
+
+#--------Gender Radio Buttons--------
+
+s_male_radiobtn = CTkRadioButton(s_year_frame, text="Male", variable=s_gender_var, value="M")
+s_male_radiobtn.grid(padx=500,pady=10)
+s_female_radiobtn = CTkRadioButton(s_year_frame, text="Female", variable=s_gender_var, value="F")
+s_female_radiobtn.grid(padx=500,pady=10)
+s_other_radiobtn =CTkRadioButton(s_year_frame, text="Other", variable=s_gender_var, value="O")
+s_other_radiobtn.grid(padx=500,pady=10)
+
+
+menu= StringVar()
+
+
+# drop= OptionMenu(s_year_frame, menu,"C++", "Java","Python","JavaScript","Rust","GoLang")
+# drop.grid()
+
+drop= CTkOptionMenu(s_year_frame,variable=menu, values=["80%", "90%", "100%", "110%", "120%"])
+drop.grid()
 
 
 
@@ -436,11 +505,9 @@ hssc_v_total_entry.grid(padx=500,pady=5)
 
 
 
+#--------Second Year Frame Ends--------
 
 
-s_year_frame=CTkFrame(app,width=1165,height=height)
-s_label=CTkLabel(s_year_frame,text='2nd year')
-s_year_frame.grid_propagate(0)
-s_label.grid()
+
 
 app.mainloop()
