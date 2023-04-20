@@ -1,6 +1,28 @@
 from tkinter import *
 from customtkinter import *
 
+
+
+#----------------DATBASE--------------------
+def submit_data_FY():
+    reg_no = int(reg_no_entry.get())
+    name = name_entry.get()
+    gender = gender_var.get()
+    mo = mo_var.get()
+    py = py_var.get()
+    engg = engg_var.get()
+    gen_csp = gen_csp_var.get()
+    sc_st_obc = sc_st_obc_var.get()
+    pwd_ff_esm = pwd_ff_esm_var.get()
+    gn_nri_la_oga = gn_nri_la_oga_var.get()
+    ssc_eng = ssc_eng_entry.get()
+    ssc_mat = ssc_mat_entry.get()
+    ssc_sci = ssc_sci_entry.get()
+    
+
+
+
+
 #--------Main window--------
 app=CTk()
 width= app.winfo_screenwidth()               
