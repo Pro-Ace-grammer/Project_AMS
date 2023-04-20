@@ -18,7 +18,18 @@ def submit_data_FY():
     ssc_eng = ssc_eng_entry.get()
     ssc_mat = ssc_mat_entry.get()
     ssc_sci = ssc_sci_entry.get()
+    ssc_q_total= something
+    hssc_eng = hssc_eng_entry.get()
+    hssc_phy  = hssc_phy_entry.get()
+    hssc_che = hssc_che_entry.get()
+    hssc_math = hssc_math_entry.get()
+    hssc_bio = hssc_bio_entry.get()
+    #there are some fields I need to put here 
     
+
+
+    
+
 
 
 
@@ -309,6 +320,10 @@ hssc_che_entry = CTkEntry(f_year_frame,state="disabled")
 hssc_che_entry.grid(padx=500,pady=5)
 
 
+hssc_math_label=CTkLabel(f_year_frame, text="HSSC Biology marks:" ,state="disabled")
+hssc_math_label.grid(padx=500,pady=5)
+hssc_math_entry = CTkEntry(f_year_frame,state="disabled")
+hssc_math_entry.grid(padx=500,pady=5)
 
 
 hssc_bio_label=CTkLabel(f_year_frame, text="HSSC Biology marks:" ,state="disabled")
