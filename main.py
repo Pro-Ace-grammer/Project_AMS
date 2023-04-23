@@ -1,9 +1,9 @@
-from tkinter import *
+# from tkinter import *
 from customtkinter import *
 
 
 
-#----------------DATBASE--------------------
+#----------------DATABASE--------------------
 def submit_data_FY():
     reg_no = int(reg_no_entry.get())
     name = name_entry.get()
@@ -40,7 +40,7 @@ width= app.winfo_screenwidth()
 height= app.winfo_screenheight() 
 set_appearance_mode("system")
 # app.resizable(width=FALSE, height=FALSE)
-app.geometry("%dx%d" %(width,height))
+app.geometry("%dx%d+0+0" %(width,height))
 app.title("App")
 # print(width)
 # print(height)
@@ -48,14 +48,14 @@ app.title("App")
 #--------Functions--------
 def year1():
     s_year_frame.grid_forget()
-    f_year_frame.grid_propagate()
+    # f_year_frame.grid_propagate()
     f_year_frame.grid(row=0,column=1,sticky="N",padx=5,pady=5)   
 
 
 
 def year2():
     f_year_frame.grid_forget()
-    s_year_frame.grid_propagate()
+    # s_year_frame.grid_propagate()
     s_year_frame.grid(row=0,column=1,sticky="N",padx=5,pady=5)   
 
 
@@ -66,7 +66,7 @@ def year2():
 f_width=13.616398243*width/100
 year_frame_width=84.1874084919*width/100
 frame1=CTkFrame(app,width=f_width,height=height)
-frame1.grid(row=0,column=0,padx=5,pady=5,sticky="E")
+frame1.grid(row=0,column=0,padx=10,pady=5,sticky="E")
 frame1.grid_propagate(0)
 
 year_var=IntVar()
@@ -83,41 +83,53 @@ s_year_buton.grid(padx=10,pady=10)
 
 
 #--------First Year Frame--------
-f_year_frame=CTkScrollableFrame(app,width=year_frame_width,height=height-80,orientation="vertical")
+f_year_frame=CTkFrame(app,width=year_frame_width,height=height)
 f_year_frame.grid(row=0,column=1,sticky="N",padx=5,pady=5)
 f_year_frame.grid_propagate()
 
 
+
+# print(year_frame_width)
+
+# label=CTkLabel(f_year_frame,text='.')
+# label.grid()
+# myscrollbar=CTkScrollbar(f_year_frame,orientation="vertical",height=height)
+# myscrollbar.pack(side="right",fill="y")
 #--------Frame content--------
 
 
 register_var=StringVar()
 
-reg_no_label = CTkLabel(f_year_frame, text="Registration Number")
-reg_no_label.grid(padx=500,pady=5)
+reg_no_label = CTkLabel(f_year_frame, text="Registration Number:")
+reg_no_label.place(x=20,y=20)
 reg_no_entry = CTkEntry(f_year_frame,textvariable=register_var)
-reg_no_entry.grid(padx=500,pady=5)
+reg_no_entry.place(x=140,y=20)
 
 
 
 name_var=StringVar()
 
-name_label = CTkLabel(f_year_frame, text="Name")
-name_label.grid(padx=500,pady=10)
-name_entry =CTkEntry(f_year_frame,textvariable=name_var)
-name_entry.grid(padx=500,pady=10)
+name_label = CTkLabel(f_year_frame, text="Name:")
+name_label.place(x=340,y=20)
+name_entry = CTkEntry(f_year_frame,textvariable=name_var)
+name_entry.place(x=410,y=20)
 
+
+# genderframe=CTkFrame(f_year_frame)
+# genderframe.place(x=20,y=)
 
 gender_var = StringVar()
-gender = CTkLabel(f_year_frame, text="Gender")
-gender.grid(padx=500,pady=10)
 
-male_radiobtn = CTkRadioButton(f_year_frame, text="Male", variable=gender_var, value="M")
-male_radiobtn.grid(padx=500,pady=10)
+gender = CTkLabel(f_year_frame, text="Gender:")
+gender.place(x=20,y=70)
+
+
+male_radiobtn = CTkRadioButton(f_year_frame, text="Male", variable=gender_var, value="M" )
+male_radiobtn.place(x=100,y=70)
 female_radiobtn = CTkRadioButton(f_year_frame, text="Female", variable=gender_var, value="F")
-female_radiobtn.grid(padx=500,pady=10)
+female_radiobtn.place(x=180,y=70)
 other_radiobtn =CTkRadioButton(f_year_frame, text="Other", variable=gender_var, value="O")
-other_radiobtn.grid(padx=500,pady=10)
+other_radiobtn.place(x=260,y=70)
 
 
 
@@ -165,13 +177,13 @@ mo_var = BooleanVar()
 py_var = BooleanVar()
 engg_var = BooleanVar()
 program = CTkLabel(f_year_frame, text="Program:")
-program.grid(padx=500,pady=10)
+program.place(x=20,y=130)
 mo_btn = CTkCheckBox(f_year_frame, text="MO", variable=mo_var ,command=disab_enab)
-mo_btn.grid(padx=500,pady=10)
+mo_btn.place(x=100,y=130)
 py_btn = CTkCheckBox(f_year_frame, text="PY", variable=py_var ,command=disab_enab)
-py_btn.grid(padx=500,pady=10)
+py_btn.place(x=180,y=130)
 engg_btn = CTkCheckBox(f_year_frame, text="ENGG", variable=engg_var ,command=disab_enab)
-engg_btn.grid(padx=500,pady=10)
+engg_btn.place(x=260,y=130)
 
 
 
@@ -183,47 +195,47 @@ engg_btn.grid(padx=500,pady=10)
 
 gen_csp_var= StringVar()
 gen_csp_label = CTkLabel(f_year_frame, text="GEN/CSP:" )
-gen_csp_label.grid(padx=500,pady=10)
+gen_csp_label.place(x=20,y=180)
 
 gen_radiobtn = CTkRadioButton(f_year_frame, text="GEN",variable=gen_csp_var, value="GEN")
-gen_radiobtn.grid(padx=500,pady=10)
+gen_radiobtn.place(x=100,y=180)
 
 
 
 csp_radiobtn = CTkRadioButton(f_year_frame,text="CSP", variable=gen_csp_var, value="CSP")
-csp_radiobtn.grid(padx=500,pady=10)
+csp_radiobtn.place(x=180,y=180)
 
 
 
 #--------SC/ST/OBC--------
 sc_st_obc_var= StringVar()
 sc_st_obc_label = CTkLabel(f_year_frame, text="SC/ST/OBC:")
-sc_st_obc_label.grid(padx=500,pady=10)
+sc_st_obc_label.place(x=20,y=230)
 
 sc_radiobtn = CTkRadioButton(f_year_frame, text="SC",variable=sc_st_obc_var, value="SC")
-sc_radiobtn.grid(padx=500,pady=10)
+sc_radiobtn.place(x=100,y=230)
 
 st_radiobtn = CTkRadioButton(f_year_frame,text="ST", variable=sc_st_obc_var, value="ST")
-st_radiobtn.grid(padx=500,pady=10)
+st_radiobtn.place(x=180,y=230)
 
 obc_radiobtn = CTkRadioButton(f_year_frame,text="OBC", variable=sc_st_obc_var, value="OBC")
-obc_radiobtn.grid(padx=500,pady=10)
+obc_radiobtn.place(x=260,y=230)
 
 
 #--------PwD/FF/ESM--------
 
 pwd_ff_esm_var=StringVar()
 pwd_ff_esm_label=CTkLabel(f_year_frame, text="PwD/FF/ESM")
-pwd_ff_esm_label.grid(padx=500,pady=10)
+pwd_ff_esm_label.place(x=20,y=280)
 
 pwd_radiobtn = CTkRadioButton(f_year_frame, text="PwD",variable=sc_st_obc_var, value="PwD")
-pwd_radiobtn.grid(padx=500,pady=10)
+pwd_radiobtn.place(x=100,y=280)
 
 ff_radiobtn = CTkRadioButton(f_year_frame,text="FF", variable=sc_st_obc_var, value="FF")
-ff_radiobtn.grid(padx=500,pady=10)
+ff_radiobtn.place(x=180,y=280)
 
 esm_radiobtn = CTkRadioButton(f_year_frame,text="ESM", variable=sc_st_obc_var, value="ESM")
-esm_radiobtn.grid(padx=500,pady=10)
+esm_radiobtn.place(x=260,y=280)
 
 
 
@@ -233,20 +245,20 @@ esm_radiobtn.grid(padx=500,pady=10)
 gn_nri_la_oga_var=StringVar()
 
 gn_nri_la_oga_label=CTkLabel(f_year_frame, text="GN/NRI/LA/OGA")
-gn_nri_la_oga_label.grid(padx=500,pady=10)
+gn_nri_la_oga_label.place(x=20,y=330)
 
 gn_radiobtn = CTkRadioButton(f_year_frame, text="GN",variable=gn_nri_la_oga_var, value="GN")
-gn_radiobtn.grid(padx=500,pady=10)
+gn_radiobtn.place(x=100,y=330)
 
 nri_radiobtn = CTkRadioButton(f_year_frame,text="NRI", variable=gn_nri_la_oga_var, value="NRI")
-nri_radiobtn.grid(padx=500,pady=10)
+nri_radiobtn.place(x=180,y=330)
 
 la_radiobtn = CTkRadioButton(f_year_frame,text="LA", variable=gn_nri_la_oga_var, value="LA")
-la_radiobtn.grid(padx=500,pady=10)
+la_radiobtn.place(x=260,y=330)
 
 
 oga_radiobtn = CTkRadioButton(f_year_frame,text="OGA", variable=gn_nri_la_oga_var, value="OGA")
-oga_radiobtn.grid(padx=500,pady=10)
+oga_radiobtn.place(x=340,y=330)
 
 
 
@@ -255,36 +267,36 @@ oga_radiobtn.grid(padx=500,pady=10)
 
 
 ssc_label=CTkLabel(f_year_frame, text="SSC  marks:" ,font=('Helvetica', 24))
-ssc_label.grid(padx=500,pady=5)
+ssc_label.place(x=20,y=380)
 
-ssc_eng_label=CTkLabel(f_year_frame, text="SSC English marks:")
-ssc_eng_label.grid(padx=500,pady=5)
-ssc_eng_entry = CTkEntry(f_year_frame)
-ssc_eng_entry.grid(padx=500,pady=5)
-
-
-
-
-ssc_mat_label=CTkLabel(f_year_frame, text="SSC Maths marks:")
-ssc_mat_label.grid(padx=500,pady=5)
-ssc_mat_entry = CTkEntry(f_year_frame)
-ssc_mat_entry.grid(padx=500,pady=5)
+# ssc_eng_label=CTkLabel(f_year_frame, text=":")
+# ssc_eng_label.place(x=80,y=380)
+ssc_eng_entry = CTkEntry(f_year_frame,placeholder_text='SSC English marks')
+ssc_eng_entry.place(x=80,y=430)
 
 
 
 
-ssc_sci_label=CTkLabel(f_year_frame, text="SSC Science marks:")
-ssc_sci_label.grid(padx=500,pady=5)
-ssc_sci_entry = CTkEntry(f_year_frame)
-ssc_sci_entry.grid(padx=500,pady=5)
+# ssc_mat_label=CTkLabel(f_year_frame, text=":")
+# ssc_mat_label.place(x=,y=430)
+ssc_mat_entry = CTkEntry(f_year_frame,placeholder_text='SSC Maths marks')
+ssc_mat_entry.place(x=140,y=430)
 
 
 
 
-ssc_total_label=CTkLabel(f_year_frame, text="SSC Total marks:" )
-ssc_total_label.grid(padx=500,pady=5)
-ssc_total_entry = CTkEntry(f_year_frame)
-ssc_total_entry.grid(padx=500,pady=5)
+# ssc_sci_label=CTkLabel(f_year_frame, text=":")
+# ssc_sci_label.grid()
+ssc_sci_entry = CTkEntry(f_year_frame,placeholder_text='SSC Science marks')
+ssc_sci_entry.place(x=200,y=430)
+
+
+
+
+# ssc_total_label=CTkLabel(f_year_frame, text=":" )
+# ssc_total_label.grid()
+ssc_total_entry = CTkEntry(f_year_frame,placeholder_text='SSC Total marks')
+ssc_total_entry.place(x=260,y=430)
 
 
 
@@ -296,40 +308,40 @@ ssc_total_entry.grid(padx=500,pady=5)
 #--------HSSC Marks--------
 
 hssc_label=CTkLabel(f_year_frame, text="HSSC  marks:" ,font=('Helvetica', 24))
-hssc_label.grid(padx=500,pady=5)
+hssc_label.place(x=20,y=480)
 
-hssc_eng_label=CTkLabel(f_year_frame, text="HSSC English marks:",state="disabled")
-hssc_eng_label.grid(padx=500,pady=5)
-hssc_eng_entry = CTkEntry(f_year_frame,state="disabled")
-hssc_eng_entry.grid(padx=500,pady=5)
-
-
-
-
-hssc_phy_label=CTkLabel(f_year_frame, text="HSSC Physics marks:",state="disabled")
-hssc_phy_label.grid(padx=500,pady=5)
-hssc_phy_entry = CTkEntry(f_year_frame,state="disabled")
-hssc_phy_entry.grid(padx=500,pady=5)
+# hssc_eng_label=CTkLabel(f_year_frame, text=":",state="disabled")
+# hssc_eng_label.place(x=20,y=530)
+hssc_eng_entry = CTkEntry(f_year_frame,state="disabled",placeholder_text='HSSC English marks')
+hssc_eng_entry.place(x=20,y=530)
 
 
 
 
-hssc_che_label=CTkLabel(f_year_frame, text="HSSC Chemistry marks:",state="disabled")
-hssc_che_label.grid(padx=500,pady=5)
-hssc_che_entry = CTkEntry(f_year_frame,state="disabled")
-hssc_che_entry.grid(padx=500,pady=5)
+# hssc_phy_label=CTkLabel(f_year_frame, text=":",state="disabled")
+# hssc_phy_label.grid()
+hssc_phy_entry = CTkEntry(f_year_frame,state="disabled",placeholder_text='HSSC Physics marks')
+hssc_phy_entry.place(x=80,y=530)
 
 
-hssc_math_label=CTkLabel(f_year_frame, text="HSSC Biology marks:" ,state="disabled")
-hssc_math_label.grid(padx=500,pady=5)
-hssc_math_entry = CTkEntry(f_year_frame,state="disabled")
-hssc_math_entry.grid(padx=500,pady=5)
 
 
-hssc_bio_label=CTkLabel(f_year_frame, text="HSSC Biology marks:" ,state="disabled")
-hssc_bio_label.grid(padx=500,pady=5)
-hssc_bio_entry = CTkEntry(f_year_frame,state="disabled")
-hssc_bio_entry.grid(padx=500,pady=5)
+# hssc_che_label=CTkLabel(f_year_frame, text=":",state="disabled")
+# hssc_che_label.grid()
+hssc_che_entry = CTkEntry(f_year_frame,state="disabled",placeholder_text='HSSC Chemistry marks')
+hssc_che_entry.place(x=140,y=530)
+
+
+# hssc_math_label=CTkLabel(f_year_frame, text=":" ,state="disabled")
+# hssc_math_label.grid()
+hssc_math_entry = CTkEntry(f_year_frame,state="disabled",placeholder_text='HSSC Math marks')
+hssc_math_entry.place(x=200,y=530)
+
+
+# hssc_bio_label=CTkLabel(f_year_frame, text=":" ,state="disabled")
+# hssc_bio_label.grid()
+hssc_bio_entry = CTkEntry(f_year_frame,state="disabled",placeholder_text='HSSC Biology marks')
+hssc_bio_entry.place(x=260,y=530)
 
 
 
@@ -395,20 +407,20 @@ hssc_total_var=StringVar()
 
 
 hssc_type_label=CTkLabel(f_year_frame, text="HSSC :")
-hssc_type_label.grid(padx=500,pady=10)
+hssc_type_label.place(x=20,y=580)
 
 hssc_a_radiobtn = CTkRadioButton(f_year_frame, text="HSSC A",variable=hssc_total_var,value="HSSC A",command=hssc_total,state="disabled")
-hssc_a_radiobtn.grid(padx=500,pady=10)
+hssc_a_radiobtn.place(x=80,y=580)
 
 hssc_c_radiobtn = CTkRadioButton(f_year_frame,text="HSSC C", variable=hssc_total_var,value="HSSC C",command=hssc_total,state="disabled")
-hssc_c_radiobtn.grid(padx=500,pady=10)
+hssc_c_radiobtn.place(x=140,y=580)
 
 hssc_s_radiobtn = CTkRadioButton(f_year_frame,text="HSSC S", variable=hssc_total_var,value="HSSC S",command=hssc_total,state="disabled")
-hssc_s_radiobtn.grid(padx=500,pady=10)
+hssc_s_radiobtn.place(x=200,y=580)
 
 
 hssc_v_radiobtn = CTkRadioButton(f_year_frame,text="HSSC V", variable=hssc_total_var,value="HSSC V",command=hssc_total,state="disabled")
-hssc_v_radiobtn.grid(padx=500,pady=10)
+hssc_v_radiobtn.place(x=260,y=580)
 
 #------HSSC Total Entry--------
 
@@ -423,45 +435,45 @@ hssc_v_total_var=StringVar()
 
 
 hssc_total_label=CTkLabel(f_year_frame, text="HSSC Total marks:" )
-hssc_total_label.grid(padx=500,pady=5)
+hssc_total_label.place(x=20,y=630)
 
-hssc_a_total_label=CTkLabel(f_year_frame, text="HSSC A total marks",state="disabled")
-hssc_a_total_label.grid(padx=500,pady=5)
-hssc_a_total_entry = CTkEntry(f_year_frame,textvariable=hssc_a_total_var,state="disabled")
-hssc_a_total_entry.grid(padx=500,pady=5)
-
-
-
-
-hssc_c_total_label=CTkLabel(f_year_frame, text="HSSC C total marks",state="disabled")
-hssc_c_total_label.grid(padx=500,pady=5)
-hssc_c_total_entry = CTkEntry(f_year_frame,textvariable=hssc_c_total_var,state="disabled")
-hssc_c_total_entry.grid(padx=500,pady=5)
+# hssc_a_total_label=CTkLabel(f_year_frame, text="",state="disabled")
+# hssc_a_total_label.place(x=,y=)
+hssc_a_total_entry = CTkEntry(f_year_frame,textvariable=hssc_a_total_var,state="disabled",placeholder_text='HSSC A total marks')
+hssc_a_total_entry.place(x=20,y=680)
 
 
 
 
-hssc_s_total_label=CTkLabel(f_year_frame, text="HSSC S total marks",state="disabled")
-hssc_s_total_label.grid(padx=500,pady=5)
-hssc_s_total_entry = CTkEntry(f_year_frame,textvariable=hssc_s_total_var,state="disabled")
-hssc_s_total_entry.grid(padx=500,pady=5)
+# hssc_c_total_label=CTkLabel(f_year_frame, text="",state="disabled")
+# hssc_c_total_label.grid()
+hssc_c_total_entry = CTkEntry(f_year_frame,textvariable=hssc_c_total_var,state="disabled",placeholder_text='HSSC C total marks')
+hssc_c_total_entry.place(x=80,y=680)
 
 
 
 
-hssc_v_total_label=CTkLabel(f_year_frame, text="HSSC V total marks",state="disabled")
-hssc_v_total_label.grid(padx=500,pady=5)
-hssc_v_total_entry = CTkEntry(f_year_frame,textvariable=hssc_v_total_var,state="disabled")
-hssc_v_total_entry.grid(padx=500,pady=5)
+# hssc_s_total_label=CTkLabel(f_year_frame, text="",state="disabled")
+# hssc_s_total_label.grid()
+hssc_s_total_entry = CTkEntry(f_year_frame,textvariable=hssc_s_total_var,state="disabled",placeholder_text='HSSC S total marks')
+hssc_s_total_entry.place(x=160,y=680)
+
+
+
+
+# hssc_v_total_label=CTkLabel(f_year_frame, text="",state="disabled")
+# hssc_v_total_label.grid()
+hssc_v_total_entry = CTkEntry(f_year_frame,textvariable=hssc_v_total_var,state="disabled",placeholder_text='HSSC V total marks')
+hssc_v_total_entry.place(x=240,y=680)
 
 
 #--------Remarks Text Box--------
 fy_remarks_var=StringVar()
 
-fy_remarks_label=CTkLabel(f_year_frame, text="Remarks")
-fy_remarks_label.grid(padx=500,pady=5)
+fy_remarks_label=CTkLabel(f_year_frame, text="Remarks:")
+fy_remarks_label.place(x=20,y=730)
 fy_remarks_entry = CTkEntry(f_year_frame,textvariable=fy_remarks_var,width=300,height=100)
-fy_remarks_entry.grid(padx=500,pady=5)
+fy_remarks_entry.place(x=20,y=780)
 
 
 
@@ -482,7 +494,7 @@ fy_remarks_entry.grid(padx=500,pady=5)
 
 #--------Second Year Frame--------
 
-s_year_frame=CTkScrollableFrame(app,width=year_frame_width,height=height-80,orientation="vertical")
+s_year_frame=CTkScrollableFrame(app,width=year_frame_width,height=height-80)
 s_year_frame.grid_propagate()
 
 
@@ -493,39 +505,39 @@ s_year_frame.grid_propagate()
 
 s_register_var=StringVar()
 
-s_reg_no_label = CTkLabel(s_year_frame, text="Registration Number")
-s_reg_no_label.grid(padx=500,pady=5)
+s_reg_no_label = CTkLabel(s_year_frame, text="Registration Number",bg_color='red')
+s_reg_no_label.grid()
 s_reg_no_entry = CTkEntry(s_year_frame,textvariable=s_register_var)
-s_reg_no_entry.grid(padx=500,pady=5)
+s_reg_no_entry.grid()
 
 
 
 s_name_var=StringVar()
 
 s_name_label = CTkLabel(s_year_frame, text="Name")
-s_name_label.grid(padx=500,pady=10)
+s_name_label.grid()
 s_name_entry =CTkEntry(s_year_frame,textvariable=s_name_var)
-s_name_entry.grid(padx=500,pady=10)
+s_name_entry.grid()
 
 #--------Gender Radio Buttons--------
 
 s_gender_var = StringVar()
 s_gender = CTkLabel(s_year_frame, text="Gender")
-s_gender.grid(padx=500,pady=10)
+s_gender.grid()
 
 
 
 s_male_radiobtn = CTkRadioButton(s_year_frame, text="Male", variable=s_gender_var, value="M")
-s_male_radiobtn.grid(padx=500,pady=10)
+s_male_radiobtn.grid()
 s_female_radiobtn = CTkRadioButton(s_year_frame, text="Female", variable=s_gender_var, value="F")
-s_female_radiobtn.grid(padx=500,pady=10)
+s_female_radiobtn.grid()
 s_other_radiobtn =CTkRadioButton(s_year_frame, text="Other", variable=s_gender_var, value="O")
-s_other_radiobtn.grid(padx=500,pady=10)
+s_other_radiobtn.grid()
 
 #--------Courses radiobuttons--------
 
 s_course_label=CTkLabel(s_year_frame,text="Course:")
-s_course_label.grid(padx=500,pady=10)
+s_course_label.grid()
 
 
 s_hssc_var=StringVar()
@@ -597,18 +609,18 @@ def radio_sel():
 
 
 s_hssc_radiobtn = CTkRadioButton(s_year_frame, text="HSSC(SCI)", variable=s_course_var, value="1" , command=radio_sel)
-s_hssc_radiobtn.grid(padx=500,pady=10)
+s_hssc_radiobtn.grid()
 s_voc_radiobtn = CTkRadioButton(s_year_frame, text="VOC", variable=s_course_var, value="2",command=radio_sel)
-s_voc_radiobtn.grid(padx=500,pady=10)
+s_voc_radiobtn.grid()
 s_iti_radiobtn =CTkRadioButton(s_year_frame, text="ITI", variable=s_course_var, value="3",command=radio_sel)
-s_iti_radiobtn.grid(padx=500,pady=10)
+s_iti_radiobtn.grid()
 
 
 
 s_voc_drop_label=CTkLabel(s_year_frame,text="VOC",state="disabled")
 s_voc_drop_label.grid(padx=500)
 s_voc_drop= CTkOptionMenu(s_year_frame,variable=s_voc_var, values=["A", "B", "D"],state="disabled")
-s_voc_drop.grid(padx=500,pady=10)
+s_voc_drop.grid()
 
 
 
@@ -616,7 +628,7 @@ s_voc_drop.grid(padx=500,pady=10)
 s_iti_drop_label=CTkLabel(s_year_frame,text="ITI",state="disabled")
 s_iti_drop_label.grid(padx=500)
 s_iti_drop= CTkOptionMenu(s_year_frame,variable=s_iti_var, values=["A", "B", "C"],state="disabled")
-s_iti_drop.grid(padx=500,pady=10)
+s_iti_drop.grid()
 
 
 
@@ -629,18 +641,18 @@ s_hssc_mat_var=StringVar()
 
 
 s_hssc_mat_total_label=CTkLabel(s_year_frame, text="HSSC Maths(100):",state="disabled")
-s_hssc_mat_total_label.grid(padx=500,pady=5)
+s_hssc_mat_total_label.grid()
 s_hssc_mat_total_entry = CTkEntry(s_year_frame,textvariable=s_hssc_mat_var,state="disabled")
-s_hssc_mat_total_entry.grid(padx=500,pady=5)
+s_hssc_mat_total_entry.grid()
 
 
 
 s_hssc_s=StringVar()
 
 s_hssc_s_label=CTkLabel(s_year_frame, text="HSSC-S(600):",state="disabled")
-s_hssc_s_label.grid(padx=500,pady=5)
+s_hssc_s_label.grid()
 s_hssc_s_entry = CTkEntry(s_year_frame,textvariable=s_hssc_s,state="disabled")
-s_hssc_s_entry.grid(padx=500,pady=5)
+s_hssc_s_entry.grid()
 
 
 
@@ -648,9 +660,9 @@ s_hssc_s_entry.grid(padx=500,pady=5)
 s_hssc_v=StringVar()
 
 s_hssc_v_label=CTkLabel(s_year_frame, text="HSSC-V(800):",state="disabled")
-s_hssc_v_label.grid(padx=500,pady=5)
+s_hssc_v_label.grid()
 s_hssc_v_entry = CTkEntry(s_year_frame,textvariable=s_hssc_v,state="disabled")
-s_hssc_v_entry.grid(padx=500,pady=5)
+s_hssc_v_entry.grid()
 
 
 
@@ -658,9 +670,9 @@ s_hssc_v_entry.grid(padx=500,pady=5)
 s_iti_total=StringVar()
 
 s_iti_total_label=CTkLabel(s_year_frame, text="ITI(700):",state="disabled")
-s_iti_total_label.grid(padx=500,pady=5)
+s_iti_total_label.grid()
 s_iti_total_entry = CTkEntry(s_year_frame,textvariable=s_iti_total,state="disabled")
-s_iti_total_entry.grid(padx=500,pady=5)
+s_iti_total_entry.grid()
 
 
 
@@ -670,36 +682,36 @@ s_iti_total_entry.grid(padx=500,pady=5)
 
 
 s_ssc_label=CTkLabel(s_year_frame, text="SSC  marks:" ,font=('Helvetica', 24))
-s_ssc_label.grid(padx=500,pady=5)
+s_ssc_label.grid()
 
 s_ssc_eng_label=CTkLabel(s_year_frame, text="SSC English marks:")
-s_ssc_eng_label.grid(padx=500,pady=5)
+s_ssc_eng_label.grid()
 s_ssc_eng_entry = CTkEntry(s_year_frame)
-s_ssc_eng_entry.grid(padx=500,pady=5)
+s_ssc_eng_entry.grid()
 
 
 
 
 s_ssc_mat_label=CTkLabel(s_year_frame, text="SSC Maths marks:")
-s_ssc_mat_label.grid(padx=500,pady=5)
+s_ssc_mat_label.grid()
 s_ssc_mat_entry = CTkEntry(s_year_frame)
-s_ssc_mat_entry.grid(padx=500,pady=5)
+s_ssc_mat_entry.grid()
 
 
 
 
 s_ssc_sci_label=CTkLabel(s_year_frame, text="SSC Science marks:")
-s_ssc_sci_label.grid(padx=500,pady=5)
+s_ssc_sci_label.grid()
 s_ssc_sci_entry = CTkEntry(s_year_frame)
-s_ssc_sci_entry.grid(padx=500,pady=5)
+s_ssc_sci_entry.grid()
 
 
 
 
 s_ssc_total_label=CTkLabel(s_year_frame, text="SSC Total marks:" )
-s_ssc_total_label.grid(padx=500,pady=5)
+s_ssc_total_label.grid()
 s_ssc_total_entry = CTkEntry(s_year_frame)
-s_ssc_total_entry.grid(padx=500,pady=5)
+s_ssc_total_entry.grid()
 
 #--------Remarks--------
 
@@ -707,9 +719,9 @@ s_ssc_total_entry.grid(padx=500,pady=5)
 sy_remarks_var=StringVar()
 
 sy_remarks_label=CTkLabel(s_year_frame, text="Remarks")
-sy_remarks_label.grid(padx=500,pady=5)
+sy_remarks_label.grid()
 sy_remarks_entry = CTkEntry(s_year_frame,textvariable=sy_remarks_var,width=300,height=100)
-sy_remarks_entry.grid(padx=500,pady=5)
+sy_remarks_entry.grid()
 
 
 
