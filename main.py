@@ -33,6 +33,63 @@ def submit_data_FY():
 
 
 
+#--------Function to clear all fields--------
+def clear():
+   register_var=''
+   reg_no_entry.delete(0,END)
+   name_var=''
+   name_entry.delete(0,END)
+   gender_var=''
+   male_radiobtn.deselect()
+   female_radiobtn.deselect()
+   other_radiobtn.deselect()
+   mo_var.set(0)
+   py_var.set(0)
+   engg_var.set(0)
+   gen_csp_var=''
+   gen_radiobtn.deselect()
+   csp_radiobtn.deselect()
+   sc_st_obc_var=''
+   sc_radiobtn.deselect()
+   st_radiobtn.deselect()
+   obc_radiobtn.deselect()
+   pwd_ff_esm_var=''
+   pwd_radiobtn.deselect()
+   ff_radiobtn.deselect()
+   esm_radiobtn.deselect()
+   gn_nri_la_oga_var=''
+   gn_radiobtn.deselect()
+   nri_radiobtn.deselect()
+   la_radiobtn.deselect()
+   oga_radiobtn.deselect()
+   ssc_eng_entry.delete(0,END)
+   ssc_mat_entry.delete(0,END)
+   ssc_sci_entry.delete(0,END)
+   ssc_total_entry.delete(0,END)
+   hssc_eng_entry.delete(0,END)
+   hssc_phy_entry.delete(0,END)
+   hssc_che_entry.delete(0,END)
+   hssc_math_entry.delete(0,END)
+   hssc_bio_entry.delete(0,END)
+   hssc_total_var=''
+   hssc_a_radiobtn.deselect()
+   hssc_c_radiobtn.deselect()
+   hssc_s_radiobtn.deselect()
+   hssc_v_radiobtn.deselect()
+   hssc_a_total_var=''
+   hssc_c_total_var=''
+   hssc_s_total_var=''
+   hssc_v_total_var=''
+   hssc_a_total_entry.delete(0,END)
+   hssc_c_total_entry.delete(0,END)
+   hssc_s_total_entry.delete(0,END)
+   hssc_v_total_entry.delete(0,END)
+   fy_remarks_var=''
+   fy_remarks_entry.delete(0,END)
+
+
+
+
 
 #--------Main window--------
 app=CTk()
@@ -512,7 +569,7 @@ fy_remarks_entry.place(x=500,y=330)
 submit_button = CTkButton(f_year_frame,text ='submit')
 submit_button.place(x=500,y=640)
 
-clear_button = CTkButton(f_year_frame,text ='clear')
+clear_button = CTkButton(f_year_frame,text ='clear',command=clear)
 clear_button.place(x=300,y=640)
 
 
