@@ -1,1 +1,1 @@
-from .front_db import *
+from .main_db import submit_form
