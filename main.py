@@ -4,10 +4,7 @@ import main_db as db
 
 
 
-
-
-
-#----------------DATABASE--------------------
+#----------------DATBASE--------------------
 def submit_data_FY():
 
     reg_no = int(reg_no_entry.get())
@@ -151,8 +148,6 @@ def submit_data_FY():
     
 
 
-<<<<<<< HEAD
-=======
     
 
 
@@ -180,7 +175,6 @@ def clear():
    obc_radiobtn.deselect()
    pwd_ff_esm_var=''
    pwd_radiobtn.deselect()
-   ff_radiobtn.deselect()
    esm_radiobtn.deselect()
    gn_nri_la_oga_var=''
    gn_radiobtn.deselect()
@@ -215,7 +209,6 @@ def clear():
 
 
 
->>>>>>> 854467c9d0edb370bde51de5e5a92d6e3a96c2bc
 
 #--------Main window--------
 app=CTk()
@@ -423,24 +416,12 @@ obc_radiobtn.place(x=260,y=230)
 
 #--------PwD/FF/ESM--------
 
-<<<<<<< HEAD
 pwd_esm_var=StringVar()
-pwd_esm_label=CTkLabel(f_year_frame, text="PwD/ESM")
-pwd_esm_label.grid(padx=500,pady=10)
-=======
-pwd_ff_esm_var=StringVar()
-pwd_ff_esm_label=CTkLabel(f_year_frame, text="PwD/FF/ESM")
-pwd_ff_esm_label.place(x=20,y=280)
->>>>>>> 854467c9d0edb370bde51de5e5a92d6e3a96c2bc
+pwd_esm_label=CTkLabel(f_year_frame, text="PwD/FF/ESM")
+pwd_esm_label.place(x=20,y=280)
 
 pwd_radiobtn = CTkRadioButton(f_year_frame, text="PwD",variable=sc_st_obc_var, value="PwD")
 pwd_radiobtn.place(x=100,y=280)
-
-<<<<<<< HEAD
-=======
-ff_radiobtn = CTkRadioButton(f_year_frame,text="FF", variable=sc_st_obc_var, value="FF")
-ff_radiobtn.place(x=180,y=280)
->>>>>>> 854467c9d0edb370bde51de5e5a92d6e3a96c2bc
 
 esm_radiobtn = CTkRadioButton(f_year_frame,text="ESM", variable=sc_st_obc_var, value="ESM")
 esm_radiobtn.place(x=260,y=280)
@@ -507,11 +488,10 @@ ssc_total_entry = CTkEntry(f_year_frame,placeholder_text='Total',width=100)
 ssc_total_entry.place(x=335,y=430)
 
 
+#ssc ad marks added by arsalan.
+ssc_ad_entry = CTkEntry(f_year_frame,placeholder_text='AD marks',width=100)
+ssc_ad_entry.place(x=440,y=430)
 
-ssc_ad_label=CTkLabel(f_year_frame, text="SSC AD marks:" )
-ssc_ad_label.grid(padx=500,pady=5)
-ssc_ad_entry = CTkEntry(f_year_frame)
-ssc_ad_entry.grid(padx=500,pady=5)
 
 
 
@@ -543,17 +523,10 @@ hssc_che_entry = CTkEntry(f_year_frame,state="disabled",placeholder_text='HSSC C
 hssc_che_entry.place(x=230,y=530)
 
 
-<<<<<<< HEAD
-hssc_math_label=CTkLabel(f_year_frame, text="Hssc Maths marks:" ,state="disabled")
-hssc_math_label.grid(padx=500,pady=5)
-hssc_math_entry = CTkEntry(f_year_frame,state="normal")
-hssc_math_entry.grid(padx=500,pady=5)
-=======
 # hssc_math_label=CTkLabel(f_year_frame, text=":" ,state="disabled")
 # hssc_math_label.grid()
 hssc_math_entry = CTkEntry(f_year_frame,state="disabled",placeholder_text='HSSC Math marks',width=100)
 hssc_math_entry.place(x=335,y=530)
->>>>>>> 854467c9d0edb370bde51de5e5a92d6e3a96c2bc
 
 
 # hssc_bio_label=CTkLabel(f_year_frame, text=":" ,state="disabled")
@@ -561,6 +534,10 @@ hssc_math_entry.place(x=335,y=530)
 hssc_bio_entry = CTkEntry(f_year_frame,state="disabled",placeholder_text='HSSC Biology marks',width=100)
 hssc_bio_entry.place(x=440,y=530)
 
+
+
+hssc_ad_entry = CTkEntry(f_year_frame,state="disabled",placeholder_text='HSSC AD marks',width=100)
+hssc_ad_entry.place(x=545,y=530)
 
 
 
@@ -700,12 +677,6 @@ hssc_s_total_entry.place(x=710,y=230)
 hssc_v_total_entry = CTkEntry(f_year_frame,textvariable=hssc_v_total_var,state="disabled",placeholder_text='HSSC V total',width=100)
 hssc_v_total_entry.place(x=815,y=230)
 
-hssc_ad_label=CTkLabel(f_year_frame, text="Hssc Maths marks:" ,state="disabled")
-hssc_ad_label.grid(padx=500,pady=5)
-hssc_ad_entry = CTkEntry(f_year_frame,state="disabled")
-hssc_ad_entry.grid(padx=500,pady=5)
-
-
 #--------Remarks Text Box--------
 fy_remarks_var=StringVar()
 
@@ -717,16 +688,11 @@ fy_remarks_entry.place(x=500,y=330)
 
 
 
-<<<<<<< HEAD
-submit_btn = CTkButton(f_year_frame, text="Submit", command=submit_data_FY)
-submit_btn.grid()
-=======
 submit_button = CTkButton(f_year_frame,text ='submit')
 submit_button.place(x=500,y=640)
 
 clear_button = CTkButton(f_year_frame,text ='clear',command=clear)
 clear_button.place(x=300,y=640)
->>>>>>> 854467c9d0edb370bde51de5e5a92d6e3a96c2bc
 
 
 #--------First Year Frame Ends------
