@@ -185,12 +185,17 @@ def clear():
    ssc_mat_entry.delete(0,END)
    ssc_sci_entry.delete(0,END)
    ssc_total_entry.delete(0,END)
-   hssc_eng_entry.configure(state='disabled')
    hssc_eng_entry.delete(0,END)
    hssc_phy_entry.delete(0,END)
    hssc_che_entry.delete(0,END)
    hssc_math_entry.delete(0,END)
    hssc_bio_entry.delete(0,END)
+   hssc_eng_entry.configure(placeholder_text='')
+   hssc_phy_entry.configure(placeholder_text='')
+   hssc_che_entry.configure(placeholder_text='')
+   hssc_math_entry.configure(placeholder_text='')
+   hssc_bio_entry.configure(placeholder_text='')
+   hssc_eng_entry.configure(state='disabled')
    hssc_phy_entry.configure(state='disabled')
    hssc_che_entry.configure(state='disabled')
    hssc_math_entry.configure(state='disabled')
@@ -219,6 +224,7 @@ def clear():
    fy_remarks_var=''
    fy_remarks_entry.delete(0,END)
    ssc_ad_entry.delete(0,END)
+   hssc_ad_entry.configure(placeholder_text="")
    hssc_ad_entry.delete(0,END)
    hssc_ad_entry.configure(state='disabled')
    hssc_label.configure(state='disabled')
@@ -229,7 +235,6 @@ def clear():
    ssc_sci_entry.configure(placeholder_text='Science')
    ssc_total_entry.configure(placeholder_text='Total')
    ssc_ad_entry.configure(placeholder_text='AD marks')
-
 
 
 #--------Main window--------
@@ -378,10 +383,13 @@ def disab_enab():
         hssc_math_entry.delete(0,END)
         hssc_bio_entry.delete(0,END)
         hssc_total_var=''
+        hssc_ad_entry.delete(0,END)
+        hssc_ad_entry.configure(state='disabled')
 
     else:
         hssc_eng_entry.configure(state="normal",placeholder_text="English")
         # hssc_eng_label.configure(state="disabled")
+    
         hssc_phy_entry.configure(state="normal",placeholder_text="Physics")
         # hssc_phy_label.configure(state="disabled")
         hssc_che_entry.configure(state="normal",placeholder_text="Chemistry")
@@ -389,6 +397,7 @@ def disab_enab():
         hssc_bio_entry.configure(state="normal",placeholder_text="Biology")
         # hssc_bio_label.configure(state="normal")
         hssc_math_entry.configure(state="normal",placeholder_text="Maths")
+        hssc_ad_entry.configure(state='normal',placeholder_text="AD Marks")
 
 
         hssc_a_radiobtn.configure(state="normal")
