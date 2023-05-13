@@ -173,7 +173,7 @@ def clear():
    sc_radiobtn.deselect()
    st_radiobtn.deselect()
    obc_radiobtn.deselect()
-   pwd_ff_esm_var=''
+   pwd_esm_var=''
    pwd_radiobtn.deselect()
    esm_radiobtn.deselect()
    gn_nri_la_oga_var=''
@@ -235,6 +235,79 @@ def clear():
    ssc_sci_entry.configure(placeholder_text='Science')
    ssc_total_entry.configure(placeholder_text='Total')
    ssc_ad_entry.configure(placeholder_text='AD marks')
+
+
+
+#--------Clear function for second year form--------
+
+def s_clear():
+   s_register_var=''
+   s_reg_no_entry.delete(0,END)
+   s_name_var=''
+   s_name_entry.delete(0,END)
+   s_gender_var=''
+   s_male_radiobtn.deselect()
+   s_female_radiobtn.deselect()
+   s_other_radiobtn.deselect()
+
+
+   s_hssc_var=''
+   s_voc_var=''
+   s_iti_var=''
+   s_course_var=''
+
+   s_hssc_radiobtn.deselect()
+   s_voc_radiobtn.deselect()
+   s_iti_radiobtn.deselect()
+   s_voc_drop.set('')
+   s_iti_drop.set('')
+   s_hssc_mat_var=''
+   s_hssc_mat_total_entry.delete(0,END)
+   s_hssc_s=''
+   s_hssc_s_entry.delete(0,END)
+   s_hssc_v=''
+   s_hssc_v_entry.delete(0,END)
+   s_iti_total=''
+   s_iti_total_entry.delete(0,END)
+   s_voc_drop_label.configure(state="disabled")
+   s_voc_drop.configure(state="disabled")
+   s_iti_drop_label.configure(state="disabled")
+   s_iti_drop.configure(state="disabled")
+   s_hssc_mat_total_entry.delete(0,END)
+   s_hssc_s_entry.delete(0,END)
+   s_hssc_v_entry.delete(0,END)
+   s_iti_total_entry.delete(0,END)
+   s_hssc_mat_var=''
+   s_hssc_s=''
+   s_hssc_v=''
+   s_iti_total=''
+
+
+
+
+
+
+   s_ssc_eng_entry.delete(0,END)
+   s_ssc_mat_entry.delete(0,END)
+   s_ssc_sci_entry.delete(0,END)
+   s_ssc_total_entry.delete(0,END)
+   sy_remarks_var=''
+   sy_remarks_entry.delete(0,END)
+
+   s_hssc_s_total_label.configure(state='disabled')
+   s_hssc_s_entry.configure(state='disabled')
+   s_hssc_v_total_label.configure(state='disabled')
+   s_hssc_v_entry.configure(state='disabled')
+   
+   s_iti_total_label.configure(state='disabled')
+   hssc_a_total_entry.configure(state='disabled')
+   s_iti_total_entry.configure(state='disabled')
+   hssc_a_total_entry.configure(state='disabled')
+ 
+   s_hssc_mat_total_label.configure(state='disabled')
+   s_hssc_mat_total_entry.configure(state='disabled')
+
+   
 
 
 #--------Main window--------
@@ -464,10 +537,10 @@ obc_radiobtn = CTkRadioButton(f_year_frame,text="OBC", variable=sc_st_obc_var, v
 obc_radiobtn.place(x=260,y=230)
 
 
-#--------PwD/FF/ESM--------
+#--------PwD/ESM--------
 
 pwd_esm_var=StringVar()
-pwd_esm_label=CTkLabel(f_year_frame, text="PwD/FF/ESM")
+pwd_esm_label=CTkLabel(f_year_frame, text="PwD/ESM")
 pwd_esm_label.place(x=20,y=280)
 
 pwd_radiobtn = CTkRadioButton(f_year_frame, text="PwD",variable=sc_st_obc_var, value="PwD")
@@ -988,7 +1061,7 @@ sy_remarks_entry.place(x=500,y=330)
 s_submit_button = CTkButton(s_year_frame,text ='submit')
 s_submit_button.place(x=500,y=640)
 
-s_clear_button = CTkButton(s_year_frame,text ='clear',command='s_clear')
+s_clear_button = CTkButton(s_year_frame,text ='clear',command=s_clear)
 s_clear_button.place(x=300,y=640)
 
 
