@@ -185,16 +185,25 @@ def clear():
    ssc_mat_entry.delete(0,END)
    ssc_sci_entry.delete(0,END)
    ssc_total_entry.delete(0,END)
+   hssc_eng_entry.configure(state='disabled')
    hssc_eng_entry.delete(0,END)
    hssc_phy_entry.delete(0,END)
    hssc_che_entry.delete(0,END)
    hssc_math_entry.delete(0,END)
    hssc_bio_entry.delete(0,END)
+   hssc_phy_entry.configure(state='disabled')
+   hssc_che_entry.configure(state='disabled')
+   hssc_math_entry.configure(state='disabled')
+   hssc_bio_entry.configure(state='disabled')
    hssc_total_var=''
    hssc_a_radiobtn.deselect()
+   hssc_a_radiobtn.configure(state='disabled')
    hssc_c_radiobtn.deselect()
+   hssc_c_radiobtn.configure(state='disabled')
    hssc_s_radiobtn.deselect()
+   hssc_s_radiobtn.configure(state='disabled')
    hssc_v_radiobtn.deselect()
+   hssc_v_radiobtn.configure(state='disabled')
    hssc_a_total_var=''
    hssc_c_total_var=''
    hssc_s_total_var=''
@@ -203,10 +212,23 @@ def clear():
    hssc_c_total_entry.delete(0,END)
    hssc_s_total_entry.delete(0,END)
    hssc_v_total_entry.delete(0,END)
+   hssc_a_total_entry.configure(state='disabled')
+   hssc_c_total_entry.configure(state='disabled')
+   hssc_s_total_entry.configure(state='disabled')
+   hssc_v_total_entry.configure(state='disabled')
    fy_remarks_var=''
    fy_remarks_entry.delete(0,END)
-
-
+   ssc_ad_entry.delete(0,END)
+   hssc_ad_entry.delete(0,END)
+   hssc_ad_entry.configure(state='disabled')
+   hssc_label.configure(state='disabled')
+   hssc_type_label.configure(state='disabled')
+   hssc_total_label.configure(state='disabled')
+   ssc_eng_entry.configure(placeholder_text='English')
+   ssc_mat_entry.configure(placeholder_text='Maths')
+   ssc_sci_entry.configure(placeholder_text='Science')
+   ssc_total_entry.configure(placeholder_text='Total')
+   ssc_ad_entry.configure(placeholder_text='AD marks')
 
 
 
@@ -317,19 +339,19 @@ def disab_enab():
 
     if(((engg_var.get()==True) and (py_var.get()==False and mo_var.get()==False)) or( engg_var.get()==False and py_var.get()==False and mo_var.get()==False)):
         hssc_eng_entry.configure(placeholder_text="")
-        hssc_eng_entry.configure(state="disabled",placeholder_text="")
+        hssc_eng_entry.configure(state="disabled")
         # hssc_eng_label.configure(state="disabled")
         hssc_phy_entry.configure(placeholder_text="")
-        hssc_phy_entry.configure(state="disabled",placeholder_text="")
+        hssc_phy_entry.configure(state="disabled")
         # hssc_phy_label.configure(state="disabled")
         hssc_che_entry.configure(placeholder_text="")
-        hssc_che_entry.configure(state="disabled",placeholder_text="")
+        hssc_che_entry.configure(state="disabled")
         # hssc_che_label.configure(state="disabled")
         hssc_bio_entry.configure(placeholder_text="")
-        hssc_bio_entry.configure(state="disabled",placeholder_text="")
+        hssc_bio_entry.configure(state="disabled")
         # hssc_bio_label.configure(state="disabled")
         hssc_math_entry.configure(placeholder_text="")
-        hssc_math_entry.configure(state="disabled",placeholder_text="")
+        hssc_math_entry.configure(state="disabled")
         
         hssc_a_radiobtn.configure(state="disabled")
         hssc_c_radiobtn.configure(state="disabled")
@@ -338,6 +360,25 @@ def disab_enab():
         hssc_label.configure(state='disabled')
         hssc_total_label.configure(state='disabled')
         hssc_type_label.configure(state='disabled')
+        hssc_a_radiobtn.deselect()
+        hssc_c_radiobtn.deselect()
+        hssc_s_radiobtn.deselect()
+        hssc_v_radiobtn.deselect()
+        hssc_a_total_var=''
+        hssc_c_total_var=''
+        hssc_s_total_var=''
+        hssc_v_total_var=''
+        hssc_a_total_entry.delete(0,END)
+        hssc_c_total_entry.delete(0,END)
+        hssc_s_total_entry.delete(0,END)
+        hssc_v_total_entry.delete(0,END)
+        hssc_eng_entry.delete(0,END)
+        hssc_phy_entry.delete(0,END)
+        hssc_che_entry.delete(0,END)
+        hssc_math_entry.delete(0,END)
+        hssc_bio_entry.delete(0,END)
+        hssc_total_var=''
+
     else:
         hssc_eng_entry.configure(state="normal",placeholder_text="English")
         # hssc_eng_label.configure(state="disabled")
@@ -938,7 +979,7 @@ sy_remarks_entry.place(x=500,y=330)
 s_submit_button = CTkButton(s_year_frame,text ='submit')
 s_submit_button.place(x=500,y=640)
 
-s_clear_button = CTkButton(s_year_frame,text ='clear')
+s_clear_button = CTkButton(s_year_frame,text ='clear',command='s_clear')
 s_clear_button.place(x=300,y=640)
 
 
