@@ -4,7 +4,9 @@ import main_db as db
 
 
 
-#----------------DATBASE--------------------
+
+
+#----------------DATBASE FOR FIRST YEAR--------------------
 def submit_data_FY():
 
     reg_no = int(reg_no_entry.get())
@@ -35,46 +37,48 @@ def submit_data_FY():
     else:
         ssc_AD = int(ssc_ad_entry.get())
         ssc_q_total = ssc_total+ssc_AD 
+         
 
     if(mo_var.get() ==True or py_var.get() == True):
-        hssc_eng = hssc_eng_entry.get()
-        hssc_phy  = hssc_phy_entry.get()
-        hssc_che = hssc_che_entry.get()
-        hssc_math = hssc_math_entry.get()
-        hssc_bio = hssc_bio_entry.get()
+        hssc_eng = int(hssc_eng_entry.get())
+        hssc_phy  = int(hssc_phy_entry.get())
+        hssc_che = int(hssc_che_entry.get())
+        hssc_math = int(hssc_math_entry.get())
+        hssc_bio = int(hssc_bio_entry.get())
     else:
-        hssc_eng = 0
-        hssc_phy = 0
-        hssc_che = 0
-        hssc_math = 0
-        hssc_bio = 0
+        hssc_eng = ''
+        hssc_phy = ''
+        hssc_che = ''
+        hssc_math = ''
+        hssc_bio = ''
 
 
 
     if(mo_var.get() ==True or py_var.get() == True):
         pcm = hssc_phy + hssc_che + hssc_math
         pcb = hssc_phy + hssc_che + hssc_bio
+
         if(pcm>=pcb):
             pcm_b = pcm
         elif(pcm<=pcb):
             pcm_b = pcb
         else:
-            pcm_b = 0
+            pcm_b = '0'
+
         if(hssc_math>=hssc_bio):
             mat_bio = hssc_math
         elif(hssc_math>=hssc_bio):
             mat_bio = hssc_bio
         else:
             mat_bio = 0
+
     else:
-        pcm = 0
-        pcb = 0
-        pcm_b = 0
-        mat_bio = 0
+        pcm = ''
+        pcb = ''
+        pcm_b = ''
+        mat_bio = ''
         
 
-    
-    
 
     if(mo_var.get() ==True or py_var.get() == True):
 
@@ -83,27 +87,34 @@ def submit_data_FY():
         hssc_s_total = hssc_s_total_var.get()
         hssc_v_total = hssc_v_total_var.get()
 
-        if(hssc_total_var.get() == "HSSC V"):
-            hssc_all = (hssc_v_total * 600)//800
-        elif(hssc_total_var.get() == "HSSC A"):
-            hssc_all = hssc_a_total
-        elif(hssc_total_var.get() == "HSSC C"):
-            hssc_all = hssc_c_total
+        if(hssc_total_var.get() == True and hssc_total_var.get() == "HSSC V"):
+            hssc_all = (int(hssc_v_total) * 600)//800
+        elif(hssc_total_var.get() == True and hssc_total_var.get() == "HSSC A"):
+            hssc_all = int(hssc_a_total)
+        elif(hssc_total_var.get() == True and hssc_total_var.get() == "HSSC C"):
+            hssc_all = int(hssc_c_total)
+        elif(hssc_total_var.get() == True and hssc_total_var.get() == "HSSC S"):
+            hssc_all = int(hssc_s_total)
         else:
-            hssc_all = hssc_s_total
-        hssc_ad = hssc_ad_entry.get()
+            hssc_all = 0
+
+            
+        if(hssc_ad_entry.get()==''):
+            hssc_ad = 0
+        else:
+            hssc_ad = int(hssc_ad_entry.get())
         hssc_q_tot = hssc_all + hssc_ad
         hssc_per = (hssc_all/600)*100
     else:
 
-        hssc_per = 0
-        hssc_all = 0
-        hssc_a_total = 0
-        hssc_c_total = 0
-        hssc_s_total = 0
-        hssc_v_total = 0
-        hssc_ad = 0
-        hssc_q_tot = 0
+        hssc_per = ''
+        hssc_all = '0'
+        hssc_a_total = ''
+        hssc_c_total = ''
+        hssc_s_total = ''
+        hssc_v_total = ''
+        hssc_ad = ''
+        hssc_q_tot = ''
 
 
 
@@ -143,12 +154,30 @@ def submit_data_FY():
             
     fy_remarks = fy_remarks_entry.get()
     
-    db.submit_form(reg_no,name,gender,mo,py,engg,gen_csp,sc_st_obc,pwd_esm,gn_nri_la_oga,ssc_eng,ssc_mat,ssc_sci,ssc_total,ssc_AD,ssc_q_total,hssc_eng,hssc_phy,hssc_che,hssc_math,hssc_bio,pcm,pcb,pcm_b,mat_bio,hssc_a_total,hssc_c_total,hssc_s_total,hssc_v_total,hssc_all,hssc_ad,hssc_q_tot,ssc_per,hssc_per,ENGG,PY,MO,fy_remarks)
-    #there are some fields I need to put here 
+    db.submit_form_FY(reg_no,name,gender,mo,py,engg,gen_csp,sc_st_obc,pwd_esm,gn_nri_la_oga,str(ssc_eng),str(ssc_mat),str(ssc_sci),str(ssc_total),str(ssc_AD),str(ssc_q_total),str(hssc_eng),str(hssc_phy),str(hssc_che),str(hssc_math),str(hssc_bio),str(pcm),str(pcb),str(pcm_b),str(mat_bio),str(hssc_a_total),str(hssc_c_total),str(hssc_s_total),str(hssc_v_total),str(hssc_all),str(hssc_ad),str(hssc_q_tot),str(ssc_per),str(hssc_per),ENGG,PY,MO,fy_remarks)
     
 
 
     
+
+
+#----------------DATBASE FOR SECOND YEAR--------------------
+def submit_data_SY():
+    reg_no = int(s_reg_no_entry.get())
+    name = s_name_entry.get()
+    gender = s_gender_var.get()
+    hssc_if = s_hssc_var.get()
+    voc_if = s_voc_var.get()
+    iti_if = s_iti_var.get()
+    ssc_eng = int(s_ssc_eng_entry.get())
+    ssc_mat = int(s_ssc_mat_entry.get())
+    ssc_sci = int(s_ssc_sci_entry.get())
+    ssc_tot = int(s_ssc_total_entry.get())
+
+
+
+    db.submit_form_FY(reg_no,name,gender,hssc_if,voc_if,iti_if,str(ssc_eng),str(ssc_mat),str(ssc_sci),str(ssc_tot))
+
 
 
 
@@ -688,7 +717,7 @@ fy_remarks_entry.place(x=500,y=330)
 
 
 
-submit_button = CTkButton(f_year_frame,text ='submit')
+submit_button = CTkButton(f_year_frame,text ='submit',command = submit_data_FY)
 submit_button.place(x=500,y=640)
 
 clear_button = CTkButton(f_year_frame,text ='clear',command=clear)
@@ -940,11 +969,6 @@ s_submit_button.place(x=500,y=640)
 
 s_clear_button = CTkButton(s_year_frame,text ='clear')
 s_clear_button.place(x=300,y=640)
-
-
-
-
-
 
 
 #--------Second Year Frame Ends--------
