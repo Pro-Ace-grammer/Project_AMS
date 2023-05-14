@@ -1,6 +1,9 @@
 # from tkinter import *
 from customtkinter import *
+from tkinter import *
+from tkinter import ttk
 import main_db as db
+import mysql.connector as con
 
 
 
@@ -354,9 +357,130 @@ f_year_button.grid(padx=10,pady=10)
 s_year_buton=CTkRadioButton(frame1,text="2nd Year",height=10,width=10,value=2,variable=year_var,command=year2)
 s_year_buton.grid(padx=10,pady=10)
 
+win=CTk()
 
 
 
+
+
+
+
+
+
+
+#--------SHOW DATA FUNCTION--------
+def show_data_window():
+
+    show_window=CTkToplevel(win)
+    show_window.geometry("%dx%d+0+0" %(width,height))
+    show_window.title("Show Data")
+
+    
+    show_year_var=''
+
+    def change_year1():
+
+        
+        s_show_btn.place_forget()
+        show_btn.place_forget()
+
+        show_window_frame=CTkScrollableFrame(show_window,height=height,width=width)
+        show_window_frame.grid(row=0,column=0,sticky='N')
+        show_window.grid_propagate()
+
+        id_head=CTkEntry(show_window_frame,height=30,width=100)
+        id_head.insert(0,'ID')
+        id_head.grid(row=0,column=0,pady=10)
+        id_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(show_window_frame,height=30,width=100)
+        name_head.insert(0,'NAME')
+        name_head.grid(row=0,column=1,pady=10)
+        name_head.configure(state='readonly')
+
+        
+        c = con.connect(host='localhost',user='root',password='Yash_Arsu_00510',database='project_ams')
+        mycursor = c.cursor()
+        sql='select * from project_ams.show'
+        mycursor = c.cursor()
+        mycursor.execute(sql)
+        data=mycursor.fetchall()
+        row=2
+        col=0
+
+        for i in data:
+            col=0
+            for j in i:
+                item_label=CTkEntry(show_window_frame,height=30,width=100,border_width=0)
+                item_label.insert(0,j)
+                item_label.grid(row=row,column=col,pady=1,padx=1)
+                item_label.configure(state='readonly')
+                col=col+1
+            row=row+1
+
+
+
+
+
+
+
+    def change_year2():
+        s_show_window_frame.grid()
+        s_show_window_frame=CTkScrollableFrame(show_window,height=height,width=width)
+        print(2)
+
+
+
+
+
+
+    show_btn=CTkButton(show_window,text='First Year',height=50,width=200,command=change_year1)
+    show_btn.place(x=450,y=300)
+    s_show_btn=CTkButton(show_window,text='Direct Second Year',height=50,width=200,command=change_year2)
+    s_show_btn.place(x=700,y=300)
+
+
+
+
+
+
+
+
+            # show_id_label=CTkLabel()
+
+
+
+
+
+
+
+
+
+def delete_data_window():
+    delete_window=CTkToplevel(win)
+    delete_window.geometry('750x750')
+    delete_window.title("Delete Data")
+
+def update_data_window():
+    update_window=CTkToplevel(win)
+    update_window.geometry('750x750')
+    update_window.title("Update Data")
+
+
+
+
+
+
+
+show_btn=CTkButton(frame1,text="SHOW",command=show_data_window)
+show_btn.place(x=20,y=500)
+
+delete_btn=CTkButton(frame1,text="DELETE",command=delete_data_window)
+delete_btn.place(x=20,y=550)
+
+update_btn=CTkButton(frame1,text="UPDATE",command=update_data_window)
+update_btn.place(x=20,y=600)
 
 #--------First Year Frame--------
 f_year_frame=CTkFrame(app,width=year_frame_width,height=height)
