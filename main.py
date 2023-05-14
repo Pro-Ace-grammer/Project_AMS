@@ -115,7 +115,6 @@ def submit_data_FY():
     na="NA"
 
     ssc_per = (ssc_total/600)*100
-    # hssc_per = (hssc_all/600)*100
 
     if(engg_var.get()==True):
         if(ssc_per>=35):
@@ -367,7 +366,6 @@ win=CTk()
 
 
 
-
 #--------SHOW DATA FUNCTION--------
 def show_data_window():
 
@@ -378,46 +376,427 @@ def show_data_window():
     
     show_year_var=''
 
-    def change_year1():
+    # def change_year1():
 
         
-        s_show_btn.place_forget()
-        show_btn.place_forget()
+    #     s_show_btn.place_forget()
+    #     show_btn.place_forget()
 
-        show_window_frame=CTkScrollableFrame(show_window,height=height,width=width)
-        show_window_frame.grid(row=0,column=0,sticky='N')
-        show_window.grid_propagate()
-
-        id_head=CTkEntry(show_window_frame,height=30,width=100)
-        id_head.insert(0,'ID')
-        id_head.grid(row=0,column=0,pady=10)
-        id_head.configure(state='readonly')
-
-
-        name_head=CTkEntry(show_window_frame,height=30,width=100)
-        name_head.insert(0,'NAME')
-        name_head.grid(row=0,column=1,pady=10)
-        name_head.configure(state='readonly')
+    #     # canvas=CTkCanvas(show_window,height=height,width=width,background='#2B2B2B')
+    #     # canvas.grid(row=0,column=0)
+    #     # canvas.grid_propagate(0)
+    #     canvas=CTkScrollableFrame(show_window,height=750,width=width)
+    #     canvas.grid(row=0,column=0)
+    #     canvas.grid_propagate()
 
         
-        c = con.connect(host='localhost',user='root',password='Yash_Arsu_00510',database='project_ams')
-        mycursor = c.cursor()
-        sql='select * from project_ams.show'
-        mycursor = c.cursor()
-        mycursor.execute(sql)
-        data=mycursor.fetchall()
-        row=2
-        col=0
+    #     # canvas = CTk()
+    #     canvas.grid_rowconfigure(0, weight=1)
+    #     canvas.grid_columnconfigure(0, weight=1)
+        
+    #     # create scrollable textbox
+    #     tk_textbox =Text(canvas, highlightthickness=0)
+    #     tk_textbox.grid(row=0, column=0, sticky="nsew")
+        
+    #     # create CTk scrollbar
+    #     ctk_textbox_scrollbar = CTkScrollbar(canvas, command=tk_textbox.yview)
+    #     ctk_textbox_scrollbar.grid(row=0, column=1, sticky="ns")
+        
+    #     # connect textbox scroll event to CTk scrollbar
+    #     tk_textbox.configure(yscrollcommand=ctk_textbox_scrollbar.set)
+        
+        
+        
+        
+    #     # #Add a Vertical Scrollbar
+    #     # scroll_v = CTkScrollbar(canvas)
+    #     # scroll_v.grid(row=0,column=0)
 
-        for i in data:
-            col=0
-            for j in i:
-                item_label=CTkEntry(show_window_frame,height=30,width=100,border_width=0)
-                item_label.insert(0,j)
-                item_label.grid(row=row,column=col,pady=1,padx=1)
-                item_label.configure(state='readonly')
-                col=col+1
+    #     # #Add a Horizontal Scrollbar
+    #     # scroll_h = CTkScrollbar(canvas, orientation= HORIZONTAL)
+    #     # scroll_h.grid(column=0,sticky='S')
+
+
+
+
+
+
+
+    #     # id_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     # id_head.insert(0,'ID')
+    #     # id_head.grid(row=0,column=0,pady=10)
+    #     # id_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=130,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=1,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(1,'NAME')
+    #     name_head.grid(row=0,column=2,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=2,column=3,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(3,'NAME')
+    #     name_head.grid(row=0,column=4,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(4,'NAME')
+    #     name_head.grid(row=0,column=5,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(5,'NAME')
+    #     name_head.grid(row=0,column=6,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(6,'NAME')
+    #     name_head.grid(row=0,column=7,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(7,'NAME')
+    #     name_head.grid(row=0,column=8,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=8    ,column=9,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=9,column=10,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=10,column=11,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=11,column=12,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=12,column=13,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=13,column=14,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=18,column=15,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=20,column=16,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=17,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=18,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=19,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=20,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=21,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=22,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=23,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=24,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=25,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=26,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=27,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=28,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=29,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=30,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=31,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=32,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=33,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=34,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=35,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=36,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=37,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=38,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+    #     name_head=CTkEntry(canvas,height=30,width=40,border_width=1)
+    #     name_head.insert(0,'NAME')
+    #     name_head.grid(row=0,column=39,pady=10)
+    #     name_head.configure(state='readonly')
+
+
+
+
+
+
+
+
+
+        
+
+        
+        # c = con.connect(host='localhost',user='root',password='Yash_Arsu_00510',database='project_ams')
+        # mycursor = c.cursor()
+        # sql='select * from project_ams.all_students'
+        # mycursor = c.cursor()
+        # mycursor.execute(sql)
+        # data=mycursor.fetchall()
+
+
+        # row=2
+        # for i in data:
+
+        #     #----RegNo----
+        #     item_label=CTkEntry(canvas,height=30,width=40,border_width=0)
+        #     item_label.insert(0,i[0])
+        #     item_label.grid(row=row,column=0,pady=1,padx=1)
+        #     item_label.configure(state='readonly')
+
+        #     #----Name----
+        #     item_label=CTkEntry(canvas,height=30,width=130,border_width=0)
+        #     item_label.insert(0,i[1])
+        #     item_label.grid(row=row,column=1,pady=1,padx=1)
+        #     item_label.configure(state='readonly')
+
+        #     #----Gender----
+        #     item_label=CTkEntry(canvas,height=30,width=40,border_width=0)
+        #     item_label.insert(0,i[2])
+        #     item_label.grid(row=row,column=2,pady=1,padx=1)
+        #     item_label.configure(state='readonly')
+
+        #     #----mo py engg----
+        #     if(i[3]==1 or i[3]=='1'):
+        #         item_label=CTkEntry(canvas,height=30,width=40,border_width=0)
+        #         item_label.insert(0,i[3])
+        #         item_label.grid(row=row,column=3,pady=1,padx=1)
+        #         item_label.configure(state='readonly')
+        #     elif(i[4]==1 or i[4]=='1'):
+        #         item_label=CTkEntry(canvas,height=30,width=40,border_width=0)
+        #         item_label.insert(0,i[4])
+        #         item_label.grid(row=row,column=3,pady=1,padx=1)
+        #         item_label.configure(state='readonly')
+        #     elif(i[5]==1 or i[5]=='1'):
+        #         item_label=CTkEntry(canvas,height=30,width=40,border_width=0)
+        #         item_label.insert(0,i[5])
+        #         item_label.grid(row=row,column=3,pady=1,padx=1)
+        #         item_label.configure(state='readonly')
+        #     else:
+        #         pass
+
+
+
+            #----gen csp----
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             row=row+1
+
+        #     col=0
+        #     for j in i:
+        #         if(col==1):
+        #             item_label=CTkEntry(canvas,height=30,width=130,border_width=0)
+
+        #         else:
+        #             item_label=CTkEntry(canvas,height=30,width=40,border_width=0)
+        #         item_label.insert(0,j)
+        #         item_label.grid(row=row,column=col,pady=1,padx=1)
+        #         item_label.configure(state='readonly')
+        #         col=col+1
+        #     row=row+1
+
+
+
+
+        # ctk_textbox_scrollbar = CTkScrollbar(canvas,orientation='horizontal')
+        # ctk_textbox_scrollbar.grid(row=row)
 
 
 
@@ -426,8 +805,8 @@ def show_data_window():
 
 
     def change_year2():
-        s_show_window_frame.grid()
-        s_show_window_frame=CTkScrollableFrame(show_window,height=height,width=width)
+        s_canvas.grid()
+        s_canvas=CTkScrollableFrame(show_window,height=height,width=width)
         print(2)
 
 
@@ -935,7 +1314,7 @@ fy_remarks_entry.place(x=500,y=330)
 
 
 
-submit_button = CTkButton(f_year_frame,text ='submit')
+submit_button = CTkButton(f_year_frame,text ='submit',command=submit_data_FY)
 submit_button.place(x=500,y=640)
 
 clear_button = CTkButton(f_year_frame,text ='clear',command=clear)
