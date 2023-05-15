@@ -4,9 +4,7 @@ import main_db as db
 
 
 
-
-
-#----------------DATBASE FOR FIRST YEAR--------------------
+#----------------DATBASE--------------------
 def submit_data_FY():
 
     reg_no = int(reg_no_entry.get())
@@ -37,7 +35,6 @@ def submit_data_FY():
     else:
         ssc_AD = int(ssc_ad_entry.get())
         ssc_q_total = ssc_total+ssc_AD 
-         
 
     if(mo_var.get() ==True or py_var.get() == True):
         hssc_eng = int(hssc_eng_entry.get())
@@ -46,74 +43,70 @@ def submit_data_FY():
         hssc_math = int(hssc_math_entry.get())
         hssc_bio = int(hssc_bio_entry.get())
     else:
-        hssc_eng = ''
-        hssc_phy = ''
-        hssc_che = ''
-        hssc_math = ''
-        hssc_bio = ''
+        hssc_eng = 0
+        hssc_phy = 0
+        hssc_che = 0
+        hssc_math = 0
+        hssc_bio = 0
 
 
 
     if(mo_var.get() ==True or py_var.get() == True):
         pcm = hssc_phy + hssc_che + hssc_math
         pcb = hssc_phy + hssc_che + hssc_bio
-
         if(pcm>=pcb):
             pcm_b = pcm
         elif(pcm<=pcb):
             pcm_b = pcb
         else:
-            pcm_b = '0'
-
+            pcm_b = 0
         if(hssc_math>=hssc_bio):
             mat_bio = hssc_math
         elif(hssc_math>=hssc_bio):
             mat_bio = hssc_bio
         else:
             mat_bio = 0
-
     else:
-        pcm = ''
-        pcb = ''
-        pcm_b = ''
-        mat_bio = ''
+        pcm = 0
+        pcb = 0
+        pcm_b = 0
+        mat_bio = 0
         
 
+    
+    
 
     if(mo_var.get() ==True or py_var.get() == True):
 
-        hssc_a_total = hssc_a_total_var.get()
-        hssc_c_total = hssc_c_total_var.get()
-        hssc_s_total = hssc_s_total_var.get()
-        hssc_v_total = hssc_v_total_var.get()
+        hssc_a_total = hssc_a_total_entry.get()
+        hssc_c_total = hssc_c_total_entry.get()
+        hssc_s_total = hssc_s_total_entry.get()
+        hssc_v_total = hssc_v_total_entry.get()
 
-        if(hssc_total_var.get() == True and hssc_total_var.get() == "HSSC V"):
+        if(hssc_total_var.get() == "HSSC V"):
             hssc_all = (int(hssc_v_total) * 600)//800
-        elif(hssc_total_var.get() == True and hssc_total_var.get() == "HSSC A"):
+        elif(hssc_total_var.get() == "HSSC A"):
             hssc_all = int(hssc_a_total)
-        elif(hssc_total_var.get() == True and hssc_total_var.get() == "HSSC C"):
+        elif(hssc_total_var.get() == "HSSC C"):
             hssc_all = int(hssc_c_total)
-        elif(hssc_total_var.get() == True and hssc_total_var.get() == "HSSC S"):
+        else:
             hssc_all = int(hssc_s_total)
+        if (hssc_ad_entry.get()=="" or hssc_ad_entry.get()==" "):
+            hssc_AD=0
+            hssc_q_tot = hssc_all
         else:
-            hssc_all = 0
-
-            
-        if(hssc_ad_entry.get()==''):
-            hssc_ad = 0
-        else:
-            hssc_ad = int(hssc_ad_entry.get())
-        hssc_q_tot = hssc_all + hssc_ad
+            hssc_AD = int(hssc_ad_entry.get())
+            hssc_q_tot = hssc_all + hssc_AD
         hssc_per = (hssc_all/600)*100
     else:
 
         hssc_per = ''
-        hssc_all = '0'
+        hssc_all = ''
         hssc_a_total = ''
         hssc_c_total = ''
         hssc_s_total = ''
         hssc_v_total = ''
-        hssc_ad = ''
+        hssc_AD = ''
         hssc_q_tot = ''
 
 
@@ -154,29 +147,174 @@ def submit_data_FY():
             
     fy_remarks = fy_remarks_entry.get()
     
-    db.submit_form_FY(reg_no,name,gender,mo,py,engg,gen_csp,sc_st_obc,pwd_esm,gn_nri_la_oga,str(ssc_eng),str(ssc_mat),str(ssc_sci),str(ssc_total),str(ssc_AD),str(ssc_q_total),str(hssc_eng),str(hssc_phy),str(hssc_che),str(hssc_math),str(hssc_bio),str(pcm),str(pcb),str(pcm_b),str(mat_bio),str(hssc_a_total),str(hssc_c_total),str(hssc_s_total),str(hssc_v_total),str(hssc_all),str(hssc_ad),str(hssc_q_tot),str(ssc_per),str(hssc_per),ENGG,PY,MO,fy_remarks)
+    db.submit_form_FY(reg_no,name,gender,mo,py,engg,gen_csp,sc_st_obc,pwd_esm,gn_nri_la_oga,str(ssc_eng),str(ssc_mat),str(ssc_sci),str(ssc_total),str(ssc_AD),str(ssc_q_total),str(hssc_eng),str(hssc_phy),str(hssc_che),str(hssc_math),str(hssc_bio),str(pcm),str(pcb),str(pcm_b),str(mat_bio),str(hssc_a_total),str(hssc_c_total),str(hssc_s_total),str(hssc_v_total),str(hssc_all),str(hssc_AD),str(hssc_q_tot),ssc_per,hssc_per,ENGG,PY,MO,fy_remarks)
+    #there are some fields I need to put here 
     
 
 
     
+
+
+
 
 
 #----------------DATBASE FOR SECOND YEAR--------------------
 def submit_data_SY():
+
     reg_no = int(s_reg_no_entry.get())
     name = s_name_entry.get()
     gender = s_gender_var.get()
     hssc_if = s_hssc_var.get()
     voc_if = s_voc_var.get()
     iti_if = s_iti_var.get()
+
+
     ssc_eng = int(s_ssc_eng_entry.get())
     ssc_mat = int(s_ssc_mat_entry.get())
     ssc_sci = int(s_ssc_sci_entry.get())
     ssc_tot = int(s_ssc_total_entry.get())
+    if (s_ssc_ad_entry.get()=="" or s_ssc_ad_entry.get()==" "):
+        ssc_ad=0
+        ssc_m_tot = ssc_tot
+    else:
+        ssc_ad = int(ssc_ad_entry.get())
+        ssc_m_tot = ssc_tot + ssc_ad
+    # ssc_ad = int(s_hssc_ad_entry.get())
+    # ssc_m_tot = ssc_tot + ssc_ad
+
+
+    # only if it is hssc science the admin have to put value for score in maths
+    # hssc_mat = int(s_hssc_mat_total_entry.get())
+    # hssc_s = int(s_hssc_s_entry.get())
+    # hssc_v = int(s_hssc_v_entry.get())
 
 
 
-    db.submit_form_FY(reg_no,name,gender,hssc_if,voc_if,iti_if,str(ssc_eng),str(ssc_mat),str(ssc_sci),str(ssc_tot))
+
+    if (s_hssc_ad_entry.get()=="" or s_hssc_ad_entry.get()==" "):
+        hssc_ad=''
+    else:
+        hssc_ad = int(s_hssc_ad_entry.get())
+
+
+
+
+
+    if (s_course_var.get()=="1"):
+        if (s_hssc_s_entry.get()=="" or s_hssc_s_entry.get()==" "):
+            hssc_s=0
+        else:
+            hssc_mat = int(s_hssc_mat_total_entry.get())
+            hssc_s = int(s_hssc_s_entry.get())
+            hssc_q_tot_all = hssc_s
+            voc_q_tot = 0
+            hssc_v = ''
+            iti = ''
+            iti_q_tot_all = 0
+            iti_q_tot = 0
+            iti_per = 0.00
+            hp = (hssc_q_tot_all/600)*100
+            hssc_per = round(hp, ndigits=2)
+            if (s_hssc_ad_entry.get()=="" or s_hssc_ad_entry.get()==" "):
+                hssc_ad=''
+                hssc_q_tot = hssc_s
+            else:
+                hssc_ad = int(s_hssc_ad_entry.get())
+                hssc_q_tot = hssc_s + hssc_ad
+    elif (s_course_var.get()=="2"):
+        if (s_hssc_v_entry.get()=="" or s_hssc_v_entry.get()==" "):
+            hssc_v=0
+        else:
+            hssc_v = int(s_hssc_v_entry.get())
+            hqta = (hssc_v*600)/800 
+            hssc_q_tot_all = round(hqta, ndigits=2)
+            hqt = (hssc_v*600)/800 
+            hssc_q_tot = round(hqt, ndigits=2)
+            voc_q_tot = hssc_v
+            iti_q_tot = 0.00
+            hssc_mat = ''
+            iti = ''
+            iti_q_tot_all = 0
+            iti_q_tot = 0
+            iti_per = 0.00
+            hssc_s = ''
+            hp = (hssc_q_tot_all/600)*100
+            hssc_per = round(hp, ndigits=2)
+    else:
+        hssc_mat = ''
+        hssc_s = ''
+        hssc_v = ''
+        hssc_q_tot_all = '0'
+        voc_q_tot = '0.00'
+        hssc_q_tot = '0.00'
+        hssc_per = 0.00
+        if(s_course_var.get()=="3"):
+            if (s_iti_total_entry.get()=="" or s_iti_total_entry.get()==" "):
+                iti=''
+                iti_q_tot_all = 0
+                iti_q_tot = '0.00'
+                iti_per = 0.00
+            else:
+                iti = int(s_iti_total_entry.get())
+                iti_q_tot_all = iti 
+                iti_q_tot = iti
+                ip = (iti_q_tot/700)*100 
+                iti_per = round(ip, ndigits=2)
+
+    
+    # iti = int(s_iti_total_entry.get())
+    # iti_q_tot_all = iti
+
+    
+    # if (s_hssc_v_entry.get()=="" or s_hssc_v_entry.get()==" "):
+    #     hssc_s=0
+    #     hssc_q_tot = int(s_hssc_v_entry.get())
+    # else:
+    #     hssc_v = int(s_hssc_v_entry.get())
+    #     hssc_q_tot = hssc_v + hssc_ad
+
+
+
+    # hssc_q_tot = hssc_s + hssc_ad
+    # voc_q_tot = hssc_v + hssc_ad
+    # iti_q_tot = iti
+
+    ssc_per = (ssc_tot/600)*100
+    # hssc_per = (hssc_q_tot_all/600)*100
+    # iti_per = (iti_q_tot/700)*100 
+
+    if (s_course_var.get()=="1"):
+        if(hssc_per >= 35):
+            hssc_sci_el = "EL"
+        else:
+            hssc_sci_el = "NE"
+    else:
+        hssc_sci_el = "NA"
+
+
+    if (s_course_var.get()=="2"):
+        if(hssc_per >= 35):
+            voc_el = "EL"
+        else:
+            voc_el = "NE"
+    else:
+       voc_el = "NA"
+    
+
+
+    if (s_course_var.get()=="3"):
+        if(hssc_per >= 35):
+            iti_el = "EL"
+        else:
+            iti_el = "NE"
+    else:
+       iti_el = "NA"
+    
+
+
+    db.submit_form_SY(reg_no,name,gender,hssc_if,voc_if,iti_if,str(ssc_eng),str(ssc_mat),str(ssc_sci),str(ssc_tot),str(ssc_ad),str(ssc_m_tot),str(hssc_mat),str(hssc_s),str(hssc_v),str(hssc_q_tot_all),str(iti),str(iti_q_tot_all),str(hssc_ad),str(hssc_q_tot),str(voc_q_tot),str(iti_q_tot),ssc_per,hssc_per,iti_per,hssc_sci_el,voc_el,iti_el,sy_remarks_entry.get())
+
+
 
 
 
@@ -202,7 +340,7 @@ def clear():
    sc_radiobtn.deselect()
    st_radiobtn.deselect()
    obc_radiobtn.deselect()
-   pwd_ff_esm_var=''
+   pwd_esm_var=''
    pwd_radiobtn.deselect()
    esm_radiobtn.deselect()
    gn_nri_la_oga_var=''
@@ -219,11 +357,25 @@ def clear():
    hssc_che_entry.delete(0,END)
    hssc_math_entry.delete(0,END)
    hssc_bio_entry.delete(0,END)
+   hssc_eng_entry.configure(placeholder_text='')
+   hssc_phy_entry.configure(placeholder_text='')
+   hssc_che_entry.configure(placeholder_text='')
+   hssc_math_entry.configure(placeholder_text='')
+   hssc_bio_entry.configure(placeholder_text='')
+   hssc_eng_entry.configure(state='disabled')
+   hssc_phy_entry.configure(state='disabled')
+   hssc_che_entry.configure(state='disabled')
+   hssc_math_entry.configure(state='disabled')
+   hssc_bio_entry.configure(state='disabled')
    hssc_total_var=''
    hssc_a_radiobtn.deselect()
+   hssc_a_radiobtn.configure(state='disabled')
    hssc_c_radiobtn.deselect()
+   hssc_c_radiobtn.configure(state='disabled')
    hssc_s_radiobtn.deselect()
+   hssc_s_radiobtn.configure(state='disabled')
    hssc_v_radiobtn.deselect()
+   hssc_v_radiobtn.configure(state='disabled')
    hssc_a_total_var=''
    hssc_c_total_var=''
    hssc_s_total_var=''
@@ -232,11 +384,97 @@ def clear():
    hssc_c_total_entry.delete(0,END)
    hssc_s_total_entry.delete(0,END)
    hssc_v_total_entry.delete(0,END)
+   hssc_a_total_entry.configure(state='disabled')
+   hssc_c_total_entry.configure(state='disabled')
+   hssc_s_total_entry.configure(state='disabled')
+   hssc_v_total_entry.configure(state='disabled')
    fy_remarks_var=''
    fy_remarks_entry.delete(0,END)
+   ssc_ad_entry.delete(0,END)
+   hssc_ad_entry.configure(placeholder_text="")
+   hssc_ad_entry.delete(0,END)
+   hssc_ad_entry.configure(state='disabled')
+   hssc_label.configure(state='disabled')
+   hssc_type_label.configure(state='disabled')
+   hssc_total_label.configure(state='disabled')
+   ssc_eng_entry.configure(placeholder_text='English')
+   ssc_mat_entry.configure(placeholder_text='Maths')
+   ssc_sci_entry.configure(placeholder_text='Science')
+   ssc_total_entry.configure(placeholder_text='Total')
+   ssc_ad_entry.configure(placeholder_text='AD marks')
 
 
 
+#--------Clear function for second year form--------
+
+def s_clear():
+   s_register_var=''
+   s_reg_no_entry.delete(0,END)
+   s_name_var=''
+   s_name_entry.delete(0,END)
+   s_gender_var=''
+   s_male_radiobtn.deselect()
+   s_female_radiobtn.deselect()
+   s_other_radiobtn.deselect()
+
+
+   s_hssc_var=''
+   s_voc_var=''
+   s_iti_var=''
+   s_course_var=''
+
+   s_hssc_radiobtn.deselect()
+   s_voc_radiobtn.deselect()
+   s_iti_radiobtn.deselect()
+   s_voc_drop.set('')
+   s_iti_drop.set('')
+   s_hssc_mat_var=''
+   s_hssc_mat_total_entry.delete(0,END)
+   s_hssc_s=''
+   s_hssc_s_entry.delete(0,END)
+   s_hssc_v=''
+   s_hssc_v_entry.delete(0,END)
+   s_iti_total=''
+   s_iti_total_entry.delete(0,END)
+   s_voc_drop_label.configure(state="disabled")
+   s_voc_drop.configure(state="disabled")
+   s_iti_drop_label.configure(state="disabled")
+   s_iti_drop.configure(state="disabled")
+   s_hssc_mat_total_entry.delete(0,END)
+   s_hssc_s_entry.delete(0,END)
+   s_hssc_v_entry.delete(0,END)
+   s_iti_total_entry.delete(0,END)
+   s_hssc_mat_var=''
+   s_hssc_s=''
+   s_hssc_v=''
+   s_iti_total=''
+
+
+
+
+
+
+   s_ssc_eng_entry.delete(0,END)
+   s_ssc_mat_entry.delete(0,END)
+   s_ssc_sci_entry.delete(0,END)
+   s_ssc_total_entry.delete(0,END)
+   sy_remarks_var=''
+   sy_remarks_entry.delete(0,END)
+
+   s_hssc_s_total_label.configure(state='disabled')
+   s_hssc_s_entry.configure(state='disabled')
+   s_hssc_v_total_label.configure(state='disabled')
+   s_hssc_v_entry.configure(state='disabled')
+   
+   s_iti_total_label.configure(state='disabled')
+   hssc_a_total_entry.configure(state='disabled')
+   s_iti_total_entry.configure(state='disabled')
+   hssc_a_total_entry.configure(state='disabled')
+ 
+   s_hssc_mat_total_label.configure(state='disabled')
+   s_hssc_mat_total_entry.configure(state='disabled')
+
+   
 
 
 #--------Main window--------
@@ -346,19 +584,19 @@ def disab_enab():
 
     if(((engg_var.get()==True) and (py_var.get()==False and mo_var.get()==False)) or( engg_var.get()==False and py_var.get()==False and mo_var.get()==False)):
         hssc_eng_entry.configure(placeholder_text="")
-        hssc_eng_entry.configure(state="disabled",placeholder_text="")
+        hssc_eng_entry.configure(state="disabled")
         # hssc_eng_label.configure(state="disabled")
         hssc_phy_entry.configure(placeholder_text="")
-        hssc_phy_entry.configure(state="disabled",placeholder_text="")
+        hssc_phy_entry.configure(state="disabled")
         # hssc_phy_label.configure(state="disabled")
         hssc_che_entry.configure(placeholder_text="")
-        hssc_che_entry.configure(state="disabled",placeholder_text="")
+        hssc_che_entry.configure(state="disabled")
         # hssc_che_label.configure(state="disabled")
         hssc_bio_entry.configure(placeholder_text="")
-        hssc_bio_entry.configure(state="disabled",placeholder_text="")
+        hssc_bio_entry.configure(state="disabled")
         # hssc_bio_label.configure(state="disabled")
         hssc_math_entry.configure(placeholder_text="")
-        hssc_math_entry.configure(state="disabled",placeholder_text="")
+        hssc_math_entry.configure(state="disabled")
         
         hssc_a_radiobtn.configure(state="disabled")
         hssc_c_radiobtn.configure(state="disabled")
@@ -367,9 +605,31 @@ def disab_enab():
         hssc_label.configure(state='disabled')
         hssc_total_label.configure(state='disabled')
         hssc_type_label.configure(state='disabled')
+        hssc_a_radiobtn.deselect()
+        hssc_c_radiobtn.deselect()
+        hssc_s_radiobtn.deselect()
+        hssc_v_radiobtn.deselect()
+        hssc_a_total_var=''
+        hssc_c_total_var=''
+        hssc_s_total_var=''
+        hssc_v_total_var=''
+        hssc_a_total_entry.delete(0,END)
+        hssc_c_total_entry.delete(0,END)
+        hssc_s_total_entry.delete(0,END)
+        hssc_v_total_entry.delete(0,END)
+        hssc_eng_entry.delete(0,END)
+        hssc_phy_entry.delete(0,END)
+        hssc_che_entry.delete(0,END)
+        hssc_math_entry.delete(0,END)
+        hssc_bio_entry.delete(0,END)
+        hssc_total_var=''
+        hssc_ad_entry.delete(0,END)
+        hssc_ad_entry.configure(state='disabled')
+
     else:
         hssc_eng_entry.configure(state="normal",placeholder_text="English")
         # hssc_eng_label.configure(state="disabled")
+    
         hssc_phy_entry.configure(state="normal",placeholder_text="Physics")
         # hssc_phy_label.configure(state="disabled")
         hssc_che_entry.configure(state="normal",placeholder_text="Chemistry")
@@ -377,6 +637,7 @@ def disab_enab():
         hssc_bio_entry.configure(state="normal",placeholder_text="Biology")
         # hssc_bio_label.configure(state="normal")
         hssc_math_entry.configure(state="normal",placeholder_text="Maths")
+        hssc_ad_entry.configure(state='normal',placeholder_text="AD Marks")
 
 
         hssc_a_radiobtn.configure(state="normal")
@@ -443,10 +704,10 @@ obc_radiobtn = CTkRadioButton(f_year_frame,text="OBC", variable=sc_st_obc_var, v
 obc_radiobtn.place(x=260,y=230)
 
 
-#--------PwD/FF/ESM--------
+#--------PwD/ESM--------
 
 pwd_esm_var=StringVar()
-pwd_esm_label=CTkLabel(f_year_frame, text="PwD/FF/ESM")
+pwd_esm_label=CTkLabel(f_year_frame, text="PwD/ESM")
 pwd_esm_label.place(x=20,y=280)
 
 pwd_radiobtn = CTkRadioButton(f_year_frame, text="PwD",variable=sc_st_obc_var, value="PwD")
@@ -717,7 +978,7 @@ fy_remarks_entry.place(x=500,y=330)
 
 
 
-submit_button = CTkButton(f_year_frame,text ='submit',command = submit_data_FY)
+submit_button = CTkButton(f_year_frame,text ='submit',command=submit_data_FY)
 submit_button.place(x=500,y=640)
 
 clear_button = CTkButton(f_year_frame,text ='clear',command=clear)
@@ -909,14 +1170,23 @@ s_hssc_v_entry = CTkEntry(s_year_frame,textvariable=s_hssc_v,state="disabled",pl
 s_hssc_v_entry.place(x=710,y=230)
 
 
+s_hssc_ad=StringVar()
+
+s_hssc_ad_label=CTkLabel(s_year_frame, text="HSSC ad:" ,state='disabled')
+s_hssc_ad_label.place(x=815,y=180)
+s_hssc_ad_entry = CTkEntry(s_year_frame,textvariable=s_hssc_ad,state="disabled",placeholder_text='HSSC ad',width=100)
+s_hssc_ad_entry.place(x=815,y=230)
+
+
+
 
 
 s_iti_total=StringVar()
 
 s_iti_total_label=CTkLabel(s_year_frame, text="ITI Tot:" ,state='disabled')
-s_iti_total_label.place(x=815,y=180)
+s_iti_total_label.place(x=920,y=180)
 s_iti_total_entry = CTkEntry(s_year_frame,textvariable=s_iti_total,state="disabled",placeholder_text='ITI',width=100)
-s_iti_total_entry.place(x=815,y=230)
+s_iti_total_entry.place(x=920,y=230)
 
 
 
@@ -953,22 +1223,33 @@ s_ssc_sci_entry.place(x=230,y=430)
 s_ssc_total_entry = CTkEntry(s_year_frame,placeholder_text='Total',width=100)
 s_ssc_total_entry.place(x=335,y=430)
 
+
+s_ssc_ad_entry = CTkEntry(s_year_frame,placeholder_text='ad marks',width=100)
+s_ssc_ad_entry.place(x=440,y=430)
+
+
+
 #--------Remarks--------
 
 
 sy_remarks_var=StringVar()
 
 sy_remarks_label=CTkLabel(s_year_frame, text="Remarks")
-sy_remarks_label.place(x=500,y=280)
+sy_remarks_label.place(x=600,y=280)
 sy_remarks_entry = CTkEntry(s_year_frame,textvariable=sy_remarks_var,width=300,height=100)
-sy_remarks_entry.place(x=500,y=330)
+sy_remarks_entry.place(x=650,y=330)
 
 
-s_submit_button = CTkButton(s_year_frame,text ='submit')
+s_submit_button = CTkButton(s_year_frame,text ='submit', command = submit_data_SY)
 s_submit_button.place(x=500,y=640)
 
-s_clear_button = CTkButton(s_year_frame,text ='clear')
+s_clear_button = CTkButton(s_year_frame,text ='clear',command=s_clear)
 s_clear_button.place(x=300,y=640)
+
+
+
+
+
 
 
 #--------Second Year Frame Ends--------
