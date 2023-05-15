@@ -740,9 +740,244 @@ def show_data_window():
 
 
     def change_year2():
-        s_canvas.grid()
-        s_canvas=CTkScrollableFrame(show_window,height=height,width=width)
-        print(2)
+ 
+        s_show_btn.place_forget()
+        show_btn.place_forget()
+
+
+        canvas=CTkScrollableFrame(show_window,height=height-100,width=width-20,orientation="horizontal")
+        canvas.grid(row=0,column=0)
+        canvas.grid_propagate()
+
+        
+   
+        
+       
+        
+        
+        
+        
+
+
+
+
+
+
+
+        id_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        id_head.insert(0,'REGNO')
+        id_head.grid(row=0,padx=2,column=0,pady=10)
+        id_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=200,border_width=1)
+        name_head.insert(0,'NAME')
+        name_head.grid(row=0,padx=2,column=1,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'GENDER')
+        name_head.grid(row=0,padx=2,column=2,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'HSSC_SCI')
+        name_head.grid(row=0,padx=2,column=3,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'VOC_ABD')
+        name_head.grid(row=0,padx=2,column=4,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'ITI_ABC')
+        name_head.grid(row=0,padx=2,column=5,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'SSC_ENG')
+        name_head.grid(row=0,padx=2,column=6,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'SSC_MAT')
+        name_head.grid(row=0,padx=2,column=7,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'SSC_SCI')
+        name_head.grid(row=0,padx=2,column=8,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'SSC_Q_TOT')
+        name_head.grid(row=0,padx=2    ,column=9,pady=10)
+        name_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'SSC_AD_MARKS')
+        name_head.grid(row=0,padx=2,column=10,pady=10)
+        name_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'SSC_M_TOT')
+        name_head.grid(row=0,padx=2,column=11,pady=10)
+        name_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'HSSC_MAT')
+        name_head.grid(row=0,padx=2,column=12,pady=10)
+        name_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'HSSC_S')
+        name_head.grid(row=0,padx=2,column=13,pady=10)
+        name_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'HSSC_V')
+        name_head.grid(row=0,padx=2,column=14,pady=10)
+        name_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'Q.HSSC_Q_TOT_ALL')
+        name_head.grid(row=0,padx=2,column=15,pady=10)
+        name_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'ITI')
+        name_head.grid(row=0,padx=2,column=16,pady=10)
+        name_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'ITI_TOT')
+        name_head.grid(row=0,padx=2,column=17,pady=10)
+        name_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'HSSC_AD_MKS')
+        name_head.grid(row=0,padx=2,column=18,pady=10)
+        name_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'HSSC_Q_TOT')
+        name_head.grid(row=0,padx=2,column=19,pady=10)
+        name_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'VOC_Q_TOT')
+        name_head.grid(row=0,padx=2,column=20,pady=10)
+        name_head.configure(state='readonly')
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'ITI_Q_TOT')
+        name_head.grid(row=0,padx=2,column=21,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'SSC_%')
+        name_head.grid(row=0,padx=2,column=22,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'HSSC_%')
+        name_head.grid(row=0,padx=2,column=23,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'ITI_Q_PER')
+        name_head.grid(row=0,padx=2,column=24,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'HSSC__SCI_EL')
+        name_head.grid(row=0,padx=2,column=25,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'VOC_ABD_EL')
+        name_head.grid(row=0,padx=2,column=26,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=100,border_width=1)
+        name_head.insert(0,'ITI_ABC_EL')
+        name_head.grid(row=0,padx=2,column=27,pady=10)
+        name_head.configure(state='readonly')
+
+
+
+        name_head=CTkEntry(canvas,height=30,width=200,border_width=1)
+        name_head.insert(0,'REMARKS')
+        name_head.grid(row=0,padx=2,column=37,pady=10)
+        name_head.configure(state='readonly')
+
+
+        c = con.connect(host='localhost',user='root',password='Yash_Arsu_00510',database='project_ams')
+        mycursor = c.cursor()
+        sql='select * from project_ams.all_students'
+        mycursor = c.cursor()
+        mycursor.execute(sql)
+        data=mycursor.fetchall()
+
+
+        
+        row=2
+        for i in data:
+
+            col=0
+
+            for j in i:
+                if(col==1 or col=='1' or col == '37' or col==37):
+                    item_label=CTkEntry(canvas,height=30,width=200,border_width=0)
+                else:
+                    item_label=CTkEntry(canvas,height=30,width=100,border_width=0)
+                item_label.insert(0,j)
+                item_label.grid(row=row,column=col,pady=1,padx=2)
+                item_label.configure(state='readonly')
+                col=col+1
+            row=row+1
+
 
 
 
@@ -773,7 +1008,7 @@ def show_data_window():
 
 def delete_data_window():
     delete_window=CTkToplevel(win)
-    delete_window.geometry('750x750')
+    delete_window.geometry("%dx%d+0+0" %(width,height))
     delete_window.title("Delete Data")
 
 
