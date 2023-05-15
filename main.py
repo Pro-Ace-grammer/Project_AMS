@@ -247,10 +247,17 @@ def s_clear():
    s_reg_no_entry.delete(0,END)
    s_name_var=''
    s_name_entry.delete(0,END)
+   s_hssc_ad_entry.delete(0,END)
+   s_hssc_ad_total_label.configure(state='disabled')
+   s_hssc_ad_entry.configure(state='disabled')
+   
    s_gender_var=''
    s_male_radiobtn.deselect()
    s_female_radiobtn.deselect()
    s_other_radiobtn.deselect()
+
+
+   s_ssc_ad_entry.delete(0,END)
 
 
    s_hssc_var=''
@@ -290,9 +297,16 @@ def s_clear():
 
 
    s_ssc_eng_entry.delete(0,END)
+   s_ssc_eng_entry.configure(placeholder_text="English")
    s_ssc_mat_entry.delete(0,END)
+   s_ssc_mat_entry.configure(placeholder_text="Maths")
    s_ssc_sci_entry.delete(0,END)
+   s_ssc_sci_entry.configure(placeholder_text="Science")
    s_ssc_total_entry.delete(0,END)
+   s_ssc_total_entry.configure(placeholder_text="Total")
+   s_ssc_ad_entry.delete(0,END)
+   s_ssc_ad_entry.configure(placeholder_text="SSC AD")
+
    sy_remarks_var=''
    sy_remarks_entry.delete(0,END)
 
@@ -309,6 +323,8 @@ def s_clear():
    s_hssc_mat_total_label.configure(state='disabled')
    s_hssc_mat_total_entry.configure(state='disabled')
 
+   s_hssc_ad_total_label.configure(state='disabled')
+   s_hssc_ad_entry.configure(state='disabled')
    
 
 
@@ -324,6 +340,16 @@ app.title("App")
 # print(height)
 
 #--------Functions--------
+mode=True
+def change_mode():
+    global mode
+    if(mode==True):
+        mode=False
+        set_appearance_mode("dark")
+    else:
+        mode=True
+        set_appearance_mode("light")
+
 def year1():
     s_year_frame.grid_forget()
     # f_year_frame.grid_propagate()
@@ -750,10 +776,7 @@ def delete_data_window():
     delete_window.geometry('750x750')
     delete_window.title("Delete Data")
 
-def update_data_window():
-    update_window=CTkToplevel(win)
-    update_window.geometry('750x750')
-    update_window.title("Update Data")
+
 
 
 
@@ -762,13 +785,23 @@ def update_data_window():
 
 
 show_btn=CTkButton(frame1,text="SHOW",command=show_data_window)
-show_btn.place(x=20,y=500)
+show_btn.place(x=20,y=400)
 
 delete_btn=CTkButton(frame1,text="DELETE",command=delete_data_window)
-delete_btn.place(x=20,y=550)
+delete_btn.place(x=20,y=450)
 
-update_btn=CTkButton(frame1,text="UPDATE",command=update_data_window)
-update_btn.place(x=20,y=600)
+eligibiity_btn=CTkButton(frame1,text="Eligibility")
+eligibiity_btn.place(x=20,y=500)
+
+merit_btn=CTkButton(frame1,text="Merit")
+merit_btn.place(x=20,y=500)
+
+
+mode_btn=CTkButton(frame1,text="Change Mode",command=change_mode,width=40,height=40)
+mode_btn.place(x=20,y=600)
+
+
+
 
 #--------First Year Frame--------
 f_year_frame=CTkFrame(app,width=year_frame_width,height=height)
@@ -1300,6 +1333,8 @@ s_course_var = StringVar()
 def radio_sel():
     if s_course_var.get()=="1":
         s_hssc_var.set(1)
+        s_hssc_ad_total_label.configure(state='normal')
+        s_hssc_ad_entry.configure(state='normal')
         s_voc_drop_label.configure(state="disabled")
         s_voc_drop.configure(state="disabled")
         s_iti_drop_label.configure(state="disabled")
@@ -1317,6 +1352,16 @@ def radio_sel():
 
         s_iti_total_label.configure(state="disabled")
         s_iti_total_entry.configure(state="disabled")
+
+        s_hssc_ad.configure(state="normal")
+        s_iti_total=''
+        s_hssc_v=''
+        
+        s_hssc_ad_total_label.configure(state="normal")
+        s_hssc_ad_entry.configure(state="normal")
+        
+        s_hssc_ad_entry.configure(placeholder_text="HSSC AD")
+
 
 
     elif s_course_var.get()=="2":
@@ -1339,7 +1384,19 @@ def radio_sel():
         s_iti_total_label.configure(state="disabled")
         s_iti_total_entry.configure(state="disabled")
         
+        s_hssc_ad_entry.configure(state="disabled")
+        s_hssc_ad_total_label.configure(state="disabled")
+
+        s_hssc_ad=''
+        s_hssc_s=''
+        s_hssc_mat_var=''
+        s_iti_total=''
+        
     else:
+        s_hssc_ad=''
+        s_hssc_v=''
+        s_hssc_s=''
+        s_hssc_mat_var=''
         s_iti_drop_label.configure(state="normal")
         s_iti_drop.configure(state="normal")
         s_voc_drop_label.configure(state="disabled")
@@ -1356,6 +1413,8 @@ def radio_sel():
         s_iti_total_label.configure(state="normal")
         s_iti_total_entry.configure(state="normal")
         
+        s_hssc_ad_entry.configure(state="disabled")
+        s_hssc_ad_total_label.configure(state="disabled")
 
 
 s_hssc_radiobtn = CTkRadioButton(s_year_frame, text="HSSC(SCI)", variable=s_course_var, value="1" , command=radio_sel)
@@ -1415,14 +1474,19 @@ s_hssc_v_entry = CTkEntry(s_year_frame,textvariable=s_hssc_v,state="disabled",pl
 s_hssc_v_entry.place(x=710,y=230)
 
 
+s_hssc_ad=StringVar()
 
+s_hssc_ad_total_label=CTkLabel(s_year_frame, text="HSSC AD:",state="disabled")
+s_hssc_ad_total_label.place(x=815,y=180)
+s_hssc_ad_entry = CTkEntry(s_year_frame,textvariable=s_hssc_ad,state="disabled",placeholder_text='HSSC AD',width=100)
+s_hssc_ad_entry.place(x=815,y=230)
 
 s_iti_total=StringVar()
 
 s_iti_total_label=CTkLabel(s_year_frame, text="ITI Tot:" ,state='disabled')
-s_iti_total_label.place(x=815,y=180)
+s_iti_total_label.place(x=920,y=180)
 s_iti_total_entry = CTkEntry(s_year_frame,textvariable=s_iti_total,state="disabled",placeholder_text='ITI',width=100)
-s_iti_total_entry.place(x=815,y=230)
+s_iti_total_entry.place(x=920,y=230)
 
 
 
@@ -1459,15 +1523,19 @@ s_ssc_sci_entry.place(x=230,y=430)
 s_ssc_total_entry = CTkEntry(s_year_frame,placeholder_text='Total',width=100)
 s_ssc_total_entry.place(x=335,y=430)
 
+
+s_ssc_ad_entry = CTkEntry(s_year_frame,placeholder_text='SSC AD',width=100)
+s_ssc_ad_entry.place(x=440,y=430)
+
 #--------Remarks--------
 
 
 sy_remarks_var=StringVar()
 
 sy_remarks_label=CTkLabel(s_year_frame, text="Remarks")
-sy_remarks_label.place(x=500,y=280)
+sy_remarks_label.place(x=600,y=280)
 sy_remarks_entry = CTkEntry(s_year_frame,textvariable=sy_remarks_var,width=300,height=100)
-sy_remarks_entry.place(x=500,y=330)
+sy_remarks_entry.place(x=600,y=330)
 
 
 s_submit_button = CTkButton(s_year_frame,text ='submit')
