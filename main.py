@@ -1011,7 +1011,94 @@ def delete_data_window():
     delete_window.geometry("%dx%d+0+0" %(width,height))
     delete_window.title("Delete Data")
 
+    def del_year1():
+        
 
+        def del_data1():
+            var=del_box.get()
+            c = con.connect(host='localhost',user='root',password='Yash_Arsu_00510',database='project_ams')
+            mycursor = c.cursor()
+            sql='delete * from project_ams.all_students where REG.NO.(F)=%d',%{var}
+            mycursor = c.cursor()
+            mycursor.execute(sql)
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+       
+        delete_window.destroy()
+
+        frame1=CTkToplevel(win)
+        frame1.geometry("500x500")
+        frame1.title("Delete Data First Year")
+        frame1.resizable(height = None, width = None)
+    
+        del_label=CTkLabel(frame1,text="Enter RegNo:")
+        del_label.place(x=200,y=150)
+        del_box1=CTkEntry(frame1)
+        del_box1.place(x=180,y=200)
+        del_btn1=CTkButton(frame1,text="DELETE",width=80,command=del_data)
+        del_btn1.place(x=200,y=250)
+
+
+
+
+    def del_year2():
+        
+
+        def del_data2():
+            var=del_box.get()
+            c = con.connect(host='localhost',user='root',password='Yash_Arsu_00510',database='project_ams')
+            mycursor = c.cursor()
+            sql='delete * from project_ams.all_students where REG.NO.(F)=%d',%{var}
+            mycursor = c.cursor()
+            mycursor.execute(sql)
+
+
+        delete_window.destroy()
+
+        frame2=CTkToplevel(win)
+        frame2.geometry("500x500")
+        frame2.title("Delete Data Direct Second Year")
+        frame2.resizable(height = None, width = None)
+
+        del_labe2=CTkLabel(frame2,text="Enter RegNo:")
+        del_labe2.place(x=200,y=150)
+        del_box2=CTkEntry(frame2,textvariable=del_var2,placeholder_text='Enter Reg No')
+        del_box2.place(x=250,y=250)
+        del_btn1=CTkButton(frame1,text="DELETE",width=80,command=del_data2)
+        del_btn1.place(x=200,y=250)
+
+
+
+
+
+
+
+
+
+    del_btn=CTkButton(delete_window,text='First Year',height=50,width=200,command=del_year1)
+    del_btn.place(x=450,y=300)
+    s_del_btn=CTkButton(delete_window,text='Direct Second Year',height=50,width=200,command=del_year2)
+    s_del_btn.place(x=700,y=300)
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 
