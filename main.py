@@ -794,7 +794,7 @@ eligibiity_btn=CTkButton(frame1,text="Eligibility")
 eligibiity_btn.place(x=20,y=500)
 
 merit_btn=CTkButton(frame1,text="Merit")
-merit_btn.place(x=20,y=500)
+merit_btn.place(x=20,y=550)
 
 
 mode_btn=CTkButton(frame1,text="Change Mode",command=change_mode,width=40,height=40)
