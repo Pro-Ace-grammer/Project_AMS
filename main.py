@@ -307,7 +307,7 @@ def submit_data_SY():
 
 
     if (s_course_var.get()=="3"):
-        if(hssc_per >= 35):
+        if(iti_per >= 35):
             iti_el = "EL"
         else:
             iti_el = "NE"
@@ -1138,7 +1138,7 @@ def show_data_window():
             col=0
 
             for j in i:
-                if(col==1 or col=='1' or col == '37' or col==37):
+                if(col==1 or col=='1' or col == '29' or col==29):
                     item_label=CTkEntry(canvas,height=30,width=200,border_width=0)
                 else:
                     item_label=CTkEntry(canvas,height=30,width=100,border_width=0)
@@ -1498,7 +1498,7 @@ esm_radiobtn.place(x=260,y=280)
 
 gn_nri_la_oga_var=StringVar()
 
-gn_nri_la_oga_label=CTkLabel(f_year_frame, text="GN/NRI/LA/OGA")
+gn_nri_la_oga_label=CTkLabel(f_year_frame, text="GN/NRI/LA")
 gn_nri_la_oga_label.place(x=20,y=330)
 
 gn_radiobtn = CTkRadioButton(f_year_frame, text="GN",variable=gn_nri_la_oga_var, value="GN")
@@ -1914,7 +1914,7 @@ def radio_sel():
         s_hssc_ad_total_label.configure(state="disabled")
 
 
-s_hssc_radiobtn = CTkRadioButton(s_year_frame, text="HSSC(SCI)", variable=s_course_var, value="1" , command=radio_sel)
+s_hssc_radiobtn = CTkRadioButton(s_year_frame, text="HSSC", variable=s_course_var, value="1" , command=radio_sel)
 s_hssc_radiobtn.place(x=100,y=130)
 s_voc_radiobtn = CTkRadioButton(s_year_frame, text="VOC", variable=s_course_var, value="2",command=radio_sel)
 s_voc_radiobtn.place(x=180,y=130)
@@ -1926,7 +1926,7 @@ s_iti_radiobtn.place(x=260,y=130)
 s_voc_drop_label=CTkLabel(s_year_frame,text="VOC",state="disabled")
 s_voc_drop_label.place(x=20,y=180)
 s_voc_drop= CTkOptionMenu(s_year_frame,variable=s_voc_var, values=["A", "B", "D"],state="disabled")
-s_voc_drop.place(x=100,y=180)
+s_voc_drop.place(x=100,y=180)   
 
 
 
@@ -2048,15 +2048,6 @@ s_clear_button = CTkButton(s_year_frame,text ='clear',command=s_clear)
 s_clear_button.place(x=300,y=640)
 
 
-
-
-
-
-
 #--------Second Year Frame Ends--------
 
-
-
-
-app.mainloop()
- 
+app.mainloop() 

@@ -50,7 +50,7 @@ def tocsv_sy():
         dic = {'REG.NO.':rg, 'NAME':nm, 'GENDER':gnd, 'HSSC(SCI)':hssci, 'VOC=A,B,D':vabd, 'ITI=A,B,C':iabc, 'SSC-ENG.(100)':seng, 'SSC-MAT-100':smat, 'SSC-SCI-100':ssci, 'SSC-Q.TOTA-600':sqtot, 'SSC-AD.MKS':sad, 'SSC-M.TOTAL':smtot, 'HSSC-MAT.(100)':hsmat, 'HSSC-S(600)':hsss, 'HSSC-V(800)':hssv, 'HSSC-Q-TOTAL-600-ALL':hsqtall, 'ITI(700)':iti, 'ITI-Q-TOTAL-700':iqt, 'HSSC-AD.MKS':hsad, 'HSSC-Q.TOT-600':hsqt, 'VOC-Q.TOT-800':vqt, 'ITI-Q.TOT-700':iqt, 'SSC-Q.%':sper, 'HSSC-Q.%':hsper, 'ITI-Q.%':iper, 'HSSC.(SCI)':hsciel, 'VOC-(A,B,D)':voel, 'ITI-(A,B,C)':itiel, 'REMARK COMPLIANCE':remark }
 
     df = pd.DataFrame(dic)
-    df_csv = df.to_csv('F:\StudentData\SY_data.csv')
+    df_csv = df.to_csv('F:\StudentData\Eligibility\SY_data.csv')
     print("created succesfully")
     
 
@@ -115,7 +115,7 @@ def tocsv_fy():
     # os.makedirs(path)
     # path = "F:/StudentData"
     # os.makedirs(path)
-    df_csv = df.to_csv('F:\StudentData\FY_data1.csv')
+    df_csv = df.to_csv('F:\StudentData\Eligibility\FY_data1.csv')
     tocsv_sy()
     print("created succesfully")
    

@@ -1,4 +1,36 @@
-import pandas as pd
+
+ # if c == 'HSSC(SCI)':
+        #     course = 'HSSC(SCI)'
+        #     elig = df['HSSC.(SCI)']
+        # elif c == 'VOC=A,B,D' and df['VOC-(A,B,D)'] == 'A':
+        #     course = 'VOC-(A,B,D)'
+        #     elig = df['VOC-(A,B,D)']
+        # elif c == 'VOC=A,B,D' and df['VOC-(A,B,D)'] == 'B':
+        #     course = 'VOC-(A,B,D)'
+        #     elig = df['VOC-(A,B,D)']
+        # elif c == 'VOC=A,B,D' and df['VOC-(A,B,D)'] == 'D':
+        #     course = 'VOC-(A,B,D)'
+        #     elig = df['VOC-(A,B,D)']
+        # elif c == 'ITI=A,B,C' and df['ITI-(A,B,C)'] == 'A':
+        #     course = 'ITI=A,B,C'
+        #     elig = df['ITI-(A,B,C)']
+        # elif c == 'ITI=A,B,C' and df['ITI-(A,B,C)'] == 'B':
+        #     course = 'ITI=A,B,C'
+        #     elig = df['ITI-(A,B,C)']
+        # elif c == 'ITI=A,B,C' and df['ITI-(A,B,C)'] == 'C':
+        #     course = 'ITI=A,B,C'
+        #     elig = df['ITI-(A,B,C)']
+        # else:
+        #     continue
+
+
+
+
+
+
+
+
+'''import pandas as pd
 import mysql.connector as con
 import os
 
@@ -107,6 +139,7 @@ for course in dic['MO']:
 print("created successfullyyyyy:")
 # close MySQL connection
 c.close()
+'''
 
 
 
@@ -130,8 +163,7 @@ c.close()
 
 
 
-
-
+'''
 def submit_form_SY(reg_no, name, gender, hssc_if, voc_if, iti_if, ssc_eng, ssc_mat, ssc_sci, ssc_tot, ssc_ad, ssc_m_tot, hssc_mat, hssc_s, hssc_v, hssc_q_tot_all, iti, iti_q_tot_all, hssc_ad, hssc_q_tot, voc_q_tot, iti_q_tot, ssc_per, hssc_per, iti_per, hssc_sci_el, voc_el, iti_el, sy_remarks_entry):
 
 
@@ -143,3 +175,772 @@ def submit_form_SY(reg_no, name, gender, hssc_if, voc_if, iti_if, ssc_eng, ssc_m
     mycursor.execute(query)
     c.commit()
     print("successfully inserted the data")
+
+'''
+
+
+
+
+
+'''
+Exception in Tkinter callback
+Traceback (most recent call last):
+  File "C:\Users\Sunny\AppData\Local\Programs\Python\Python311\Lib\tkinter\__init__.py", line 1948, in __call__      
+    return self.func(*args)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Sunny\AppData\Local\Programs\Python\Python311\Lib\site-packages\customtkinter\windows\widgets\ctk_button.py", line 553, in _clicked
+    self._command()
+  File "c:\Users\Sunny\Project_AMS\meritmoo.py", line 82, in gen_mer
+    if((df[category] == 'GEN') & (df[course] == 1) & (df['MO_'] == 'NE')):
+  File "C:\Users\Sunny\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\generic.py", line 1466, 
+in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''    for course in ['MO']:
+        # loop through each category
+        for category in ['GEN/CSP']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'GEN') & (df[course] == 1) & (df['MO_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'GEN') & (df[course] == 1) & (df['MO_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: GENERAL\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+
+
+        for category in ['GEN/CSP']:
+            # filter dataframe to include only eligible students from current category and course
+           
+            elig_df = df[(df[category] == 'CSP') & (df[course] == 1) & (df['MO_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+            
+            nelig_df = df[(df[category] == 'CSP') & (df[course] == 1) & (df['MO_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'a') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: CSP\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+            
+
+
+
+        for category in ['SC/ST/OBC']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'SC') & (df[course] == 1) & (df['MO_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'SC') & (df[course] == 1) & (df['MO_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: SC\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+        
+
+
+        for category in ['SC/ST/OBC']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'ST') & (df[course] == 1) & (df['MO_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'ST') & (df[course] == 1) & (df['MO_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: ST\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+        
+
+
+
+        for category in ['SC/ST/OBC']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'OBC') & (df[course] == 1) & (df['MO_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'OBC') & (df[course] == 1) & (df['MO_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: OBC\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+
+        
+        for category in ['PWD/FF/ESM']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'PWD') & (df[course] == 1) & (df['MO_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'PWD') & (df[course] == 1) & (df['MO_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: PWD\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+            
+
+
+        for category in ['PWD/FF/ESM']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'FF') & (df[course] == 1) & (df['MO_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'FF') & (df[course] == 1) & (df['MO_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: FF\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+
+
+        for category in ['PWD/FF/ESM']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'ESM') & (df[course] == 1) & (df['MO_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'ESM') & (df[course] == 1) & (df['MO_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: ESM\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+        
+        
+        for category in ['GN/NRI/LA/OGA']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'GN') & (df[course] == 1) & (df['MO_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'GN') & (df[course] == 1) & (df['MO_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: GN\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+
+
+        for category in ['GN/NRI/LA/OGA']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'NRI') & (df[course] == 1) & (df['MO_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'NRI') & (df[course] == 1) & (df['MO_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: NRI\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+
+
+        for category in ['GN/NRI/LA/OGA']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'LA') & (df[course] == 1) & (df['MO_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'LA') & (df[course] == 1) & (df['MO_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: LA\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+
+
+        for category in ['GN/NRI/LA/OGA']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'OGA') & (df[course] == 1) & (df['MO_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'OGA') & (df[course] == 1) & (df['MO_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: OGA\n")
+                f.write("Merit List \n")
+    
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+    
+
+
+
+
+
+
+
+
+    #---------------------PY---------------------
+
+
+    for course in ['PY']:
+        # loop through each category
+        for category in ['GEN/CSP']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'GEN') & (df[course] == 1) & (df['PY_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'GEN') & (df[course] == 1) & (df['PY_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: GENERAL\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+
+
+        for category in ['GEN/CSP']:
+            # filter dataframe to include only eligible students from current category and course
+           
+            elig_df = df[(df[category] == 'CSP') & (df[course] == 1) & (df['PY_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+            
+            nelig_df = df[(df[category] == 'CSP') & (df[course] == 1) & (df['PY_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'a') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: CSP\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+            
+
+
+
+        for category in ['SC/ST/OBC']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'SC') & (df[course] == 1) & (df['PY_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'SC') & (df[course] == 1) & (df['PY_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: SC\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+        
+
+
+        for category in ['SC/ST/OBC']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'ST') & (df[course] == 1) & (df['PY_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'ST') & (df[course] == 1) & (df['PY_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: ST\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+        
+
+
+
+        for category in ['SC/ST/OBC']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'OBC') & (df[course] == 1) & (df['PY_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'OBC') & (df[course] == 1) & (df['PY_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: OBC\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+
+        
+        for category in ['PWD/FF/ESM']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'PWD') & (df[course] == 1) & (df['PY_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'PWD') & (df[course] == 1) & (df['PY_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: PWD\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+            
+
+
+        for category in ['PWD/FF/ESM']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'FF') & (df[course] == 1) & (df['PY_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'FF') & (df[course] == 1) & (df['PY_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: FF\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+
+
+        for category in ['PWD/FF/ESM']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'ESM') & (df[course] == 1) & (df['PY_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'ESM') & (df[course] == 1) & (df['PY_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: ESM\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+        
+        
+        for category in ['GN/NRI/LA/OGA']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'GN') & (df[course] == 1) & (df['PY_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'GN') & (df[course] == 1) & (df['PY_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: GN\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+
+
+        for category in ['GN/NRI/LA/OGA']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'NRI') & (df[course] == 1) & (df['PY_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'NRI') & (df[course] == 1) & (df['PY_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: NRI\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+
+
+        for category in ['GN/NRI/LA/OGA']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'LA') & (df[course] == 1) & (df['PY_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'LA') & (df[course] == 1) & (df['PY_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: LA\n")
+                f.write("Merit List \n")
+                
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+
+
+
+
+        for category in ['GN/NRI/LA/OGA']:
+            # filter dataframe to include only eligible students from current category and course
+            elig_df = df[(df[category] == 'OGA') & (df[course] == 1) & (df['PY_'] == 'EL')]
+            # sort dataframe based on merit list criteria
+            sortedel_df = elig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            # add merit_no column
+            sortedel_df.insert(0, 'merit_no', range(1, 1 + len(sortedel_df)))
+
+            #performing same operation as done for the eligible students
+            nelig_df = df[(df[category] == 'OGA') & (df[course] == 1) & (df['PY_'] == 'NE')]
+            sortedne_df = nelig_df.sort_values(by=['600-HSSC-ALL', 'HSSC-ENG-(100)', 'SSC-TOTAL-600','SSC-ENG-(100)'], ascending=False)
+            sortedne_df.insert(0, 'merit_no', None)
+
+            # write sorted data to CSV file
+            with open(f"merit_list.csv", 'w') as f:
+                # write table headers
+                f.write(f"Course: {course}\n")
+                f.write(f"Category: OGA\n")
+                f.write("Merit List \n")
+    
+                # write sorted data
+                sortedel_df.to_csv(f, index=False)
+                # write blank rows for not eligible cases
+                f.write("\n\nNot Eligible Cases:\n")
+                sortedne_df.to_csv(f, index=False)
+                f.write('\n\n\n\n')
+    print('GENERATED THE MERIT LIST')'''
