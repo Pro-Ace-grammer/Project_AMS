@@ -1,3 +1,17 @@
+#I've shown my project to Rajat
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  # if c == 'HSSC(SCI)':
         #     course = 'HSSC(SCI)'
@@ -22,9 +36,6 @@
         #     elig = df['ITI-(A,B,C)']
         # else:
         #     continue
-
-
-
 
 
 
