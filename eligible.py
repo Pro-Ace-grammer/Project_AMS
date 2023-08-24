@@ -8,7 +8,7 @@ import os
 
 def tocsv_sy():
 
-    c = con.connect(host='localhost',user='root',password='yasharsu',database='project_ams')
+    c = con.connect(.host='localhost',user='root',password='yasharsu',database='project_ams')
     mycursor = c.cursor()
 
     query = 'select REG_NO, NAME, GENDER, HSSC_SCI, VOC_ABD, ITI_ABC, SSC_ENG, SSC_MAT, SSC_SCI, SSC_Q_TOT, SSC_AD_MARKS, SSC_M_TOT, HSSC_MAT, HSSC_S, HSSC_V, HSSC_Q_TOT_ALL, ITI, ITI_TOT, HSSC_AD_MKS, HSSC_Q_TOT, VOC_Q_TOT, ITI_Q_TOT, SSC_Q_PER, HSSC_Q_PER, ITI_Q_PER, HSSC__SCI_EL, VOC_ABD_EL, ITI_ABC_EL, REMARK from direct_sy'

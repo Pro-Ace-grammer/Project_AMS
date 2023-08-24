@@ -4,15 +4,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
  # if c == 'HSSC(SCI)':
         #     course = 'HSSC(SCI)'
         #     elig = df['HSSC.(SCI)']
